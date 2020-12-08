@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Profinder</title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css">
+    
+<link rel="stylesheet" href="{{url_for('static',filename='assets/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/untitled.css') }}">
+    <script src="{{ url_for('static',filename='assets/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='assets/bootstrap/js/bootstrap.min.js') }}"></script><script src="{{ url_for('static',filename='assets/js/Signup.js') }}"></script>
+</head>
+
+<body>
+    <main class="masthead text-center text-white" style="height: 100%;">
+        <div class="masthead-content">
+            <div class="container" style="width: 460px;">
+                <h1 style="margin-bottom: 0px;">Criar Conta</h1>
+                <p style="text-align: left;margin-bottom: 4px;">Email</p><input type="email" style="text-align: left;padding-left: 2px;width: 438px;" id="Email"/>
+                <p style="text-align: left;margin-bottom: 4px;">Senha</p><input type="password" style="padding-left: 2px;width: 438px;" id="Password"/>
+                <p style="text-align: left;margin-bottom: 4px;">Nome</p><input type="text" style="width: 438px;" id="Name"/>
+                <p style="text-align: left;margin-bottom: 4px;">Tipo</p><select style="width: 438px;" id="Type"><optgroup label="Tipo"><option value="aluno" selected>Aluno</option><option value="prof">Professor</option></optgroup></select><button class="btn btn-primary" type="button" style="background-color: rgb(52,58,64);margin-top: 10px;" onclick="TrySignup()">Criar Conta</button>
+            </div>
+        </div>
+        <div class="bg-circle-1 bg-circle"></div>
+        <div class="bg-circle-2 bg-circle"></div>
+        <div class="bg-circle-3 bg-circle"></div>
+        <div class="bg-circle-4 bg-circle"></div>
+    </main>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark navbar-custom">
+        <div class="container"><a class="navbar-brand" href="/">Profinder</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive"></div>
+        </div>
+    </nav>
+    <script src="assets/js/jquery.min.js"></script>
+    
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+    
+    
+    
+    
+    
+    
+    
+</body>
+
+</html>

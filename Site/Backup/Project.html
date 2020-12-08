@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Profinder</title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css">
+    
+<link rel="stylesheet" href="{{url_for('static',filename='assets/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/untitled.css') }}">
+    <script src="{{ url_for('static',filename='assets/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='assets/bootstrap/js/bootstrap.min.js') }}"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script src="{{ url_for('static',filename='assets/js/TestIfLoged.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/js/SearchBar.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/js/Project.js') }}"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark navbar-custom">
+        <div class="container"><a class="navbar-brand" href="/">Profinder</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive"><span class="navbar-toggler-icon"></span></button>
+            <div class="d-xl-flex align-items-xl-center" style="height: 35px;display: block;position: absolute;left: 50%;transform: translateX(-50%);"><input type="text" id="SearchBar" style="width: 503px;margin-right: 4px;border-radius: 8px;border-color: rgba(0,0,0,0);" placeholder="Pesquisar Projeto Por Titulo"><a onclick="SearchProjects()"><img src="/static/assets/img/search_icon.png" style="height: 30px;width: 30px;" onclick="SearchForProjects ()"></a></div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="/signup/"><strong>Criar Conta</strong><br></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login/"><strong>LOGAR</strong><br></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="d-xl-flex justify-content-xl-center masthead text-center text-white" style="height: 100%;">
+        <div id="ProjectHoleDiv" class="masthead-content" style="background-color: #ffffff;width: 957px;height: 809px;margin-top: -92px;">
+            <div class="container" style="width: 100%;">
+                <h1 style="margin-bottom: 32px;border-color: rgb(255,255,255);color: rgb(0,0,0);">Projeto</h1>
+                <div class="d-xl-flex justify-content-xl-center" style="height: 199px;">
+                    <div id="ImageContainer">
+                        <div class="d-xl-flex justify-content-xl-center ImageContainer" style="height: auto;width: auto;"><img id="ItemPreview" class="ProfilePic" style="height: 199px;border-style: none;width: 199px;" src="/static/assets/img/Picture1-512.webp" alt="img"></div>
+                    </div>
+                    <div id="InfoContainer" style="padding-left: 64px;height: 100%;">
+                        <div class="d-xl-flex justify-content-xl-end align-items-xl-center" id="EditButton" style="text-align: center;margin-left: 27px;"><button class="btn btn-primary" type="button" onclick="EditProject()">Editar</button></div>
+                        <div class="d-xl-flex justify-content-xl-start align-items-xl-center" id="TituloOfProject" style="text-align: center;margin-top: 8px;margin-left: 27px;width: 515px;">
+                            <p class="d-xl-flex justify-content-xl-center" style="text-align: right;margin-bottom: 4px;color: rgb(0,0,0);width: 45px;">Titulo:</p>
+                            <p class="d-xl-flex justify-content-xl-center" id="Titulo" style="text-align: center;color: rgb(0,0,0);width: 400px;margin-left: 50px;height: 30px;margin-bottom: 0px;"></p>
+                        </div>
+                        <div class="d-xl-flex justify-content-xl-start align-items-xl-start Amostras" id="Areas">
+                            <p class="text-center" style="margin-bottom: 1px;color: rgb(0,0,0);width: 45px;margin-right: 3px;margin-top: -4px;">Areas:</p>
+                        </div>
+                        <div class="d-xl-flex justify-content-xl-start align-items-xl-start Amostras" id="Membros">
+                            <p class="text-right d-xl-flex justify-content-xl-end" style="text-align: left;margin-bottom: 1px;margin-right: 1px;color: rgb(0,0,0);width: 71px;margin-top: -4px;">Membros:</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-xl-flex justify-content-xl-center" style="width: 100%;height: 100%;">
+                <div id="ProjectDesc" style="width: 98%;height: 64%;color: rgb(0,0,0);"></div>
+            </div>
+        </div><var style="display:none" id="ProjectCode">{{ProjectCode}}</var>
+        <div class="bg-circle-1 bg-circle"></div>
+        <div class="bg-circle-2 bg-circle"></div>
+        <div class="bg-circle-3 bg-circle"></div>
+        <div class="bg-circle-4 bg-circle"></div>
+    </main>
+    <script src="assets/js/jquery.min.js"></script>
+    
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+    
+    
+    
+    
+    
+    
+    
+</body>
+
+</html>

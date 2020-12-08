@@ -1,0 +1,66 @@
+<html>
+    <body>
+        <input type="text" id="Area" style="width: 400px;margin-left: 23px;" list="Areas"/>
+        <datalist id="Areas"></datalist>
+        <div id="space"></div>
+        <script>
+            /*
+            function deleteItem(element) {
+                let nome = element.parentElement.getElementsByTagName('p')[0].innerText;
+                possibilidades.push(nome);
+                let options = "";
+                for (let i = 0; i < possibilidades.length; i++) {
+                    options += `<option value="${possibilidades[i]}"></option>`;
+                }
+                options += `<option id="criarnovaarea" value="">Criar Nova Area</option>`;
+                document.getElementById('Areas').innerHTML = options;
+
+                let index = possibilidades.indexOf(nome);
+
+                if (index > -1) {
+                    escolhidas.splice(index, 1);
+                }
+
+                element.parentElement.parentElement.removeChild(element.parentElement);
+            }
+
+            var possibilidades = ["Ola","Hello"];
+            var escolhidas = [];
+            
+            let options = "";
+            for (let i = 0; i < possibilidades.length; i++) {
+                options += `<option value="${possibilidades[i]}"></option>`;
+            }
+            options += `<option id="criarnovaarea" value="">Criar Nova Area</option>`;
+            document.getElementById('Areas').innerHTML = options;
+
+
+            document.getElementById('Area').addEventListener('input', () => {
+                document.getElementById('criarnovaarea').value = document.getElementById('Area').value + " ";
+            });
+
+            document.getElementById('Area').addEventListener('change', () => {
+
+                let value = document.getElementById('Area').value;
+
+                if (value[value.length-1] == " ")
+                    value = value.substring(0, value.length - 1);
+
+                escolhidas.push(value);
+
+                let index = possibilidades.indexOf(value);
+
+                if (index > -1) {
+                    possibilidades.splice(index, 1);
+                }
+
+                document.getElementById('Areas').innerHTML = document.getElementById('Areas').innerHTML.replace(`<option value="${value}"></option>`);
+
+                document.getElementById('space').innerHTML += `<div style="display: table;"><p style="display: table-cell;">${value}</p><button style="display: table-cell;" onclick="deleteItem(this)"><bold>X</bold></button></div>`;
+                document.getElementById('Area').value = "";
+                document.getElementById('criarnovaarea').value = "";
+            });
+            */
+        </script>
+    </body>
+</html>

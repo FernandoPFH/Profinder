@@ -1,0 +1,167 @@
+version: '3.8'
+services:
+  rabbitmq-server:
+    image: rabbitmq:3.8.5-management
+    hostname: "rabbitmq-server"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  database:
+    build: ./Database/SettingUp
+    hostname: "mysql-server"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: guest
+      MYSQL_PASSWORD: guest
+      BASE_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+    volumes:
+      - "./Database/Data:/var/lib/mysql"
+
+  imagedatabase:
+    build: ./ImagesDB
+    volumes:
+      - "./ImagesDB/public/images:/public/images"
+    depends_on: 
+      - "apigateway"
+    tty: true
+    ports:
+      - "5100:5000"
+
+  db-management:
+    image: adminer:4.7.7-standalone
+    ports:
+      - 8080:8080
+
+  apigateway:
+    build: ./Apigateway
+    environment:
+      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
+    depends_on:
+      - ${RABBITMQ_HOST_NAME}
+    tty: true
+    ports:
+      - "5050:5000"
+
+  login-get:
+    build: ./Login/Get
+    environment:
+      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
+      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+    depends_on: 
+      - ${RABBITMQ_HOST_NAME}
+      - ${MYSQL_HOST_NAME}
+    tty: true
+
+  account-data-get:
+    build: ./AccountData/Get
+    environment:
+      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
+      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+    depends_on: 
+      - ${RABBITMQ_HOST_NAME}
+      - ${MYSQL_HOST_NAME}
+    tty: true
+
+  account-data-set:
+    build: ./AccountData/Set
+    environment:
+      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
+      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+    depends_on: 
+      - ${RABBITMQ_HOST_NAME}
+      - ${MYSQL_HOST_NAME}
+    tty: true
+
+  login-set:
+    build: ./Login/Set
+    environment:
+      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
+      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+    depends_on:
+      - ${RABBITMQ_HOST_NAME}
+      - ${MYSQL_HOST_NAME}
+    tty: true
+
+  getprojectssideinfos:
+    build: ./ProjectsSideInfos/GetAllAreas
+    environment:
+      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
+      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+    depends_on: 
+      - ${RABBITMQ_HOST_NAME}
+      - ${MYSQL_HOST_NAME}
+    tty: true
+
+  getuserssideinfos:
+    build: ./UsersSideInfos/GetAllUsers
+    environment:
+      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
+      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+    depends_on: 
+      - ${RABBITMQ_HOST_NAME}
+      - ${MYSQL_HOST_NAME}
+    tty: true
+
+  searchforprojects:
+    build: ./ProjectsSideInfos/SearchForProjects
+    environment:
+      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
+      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+    depends_on: 
+      - ${RABBITMQ_HOST_NAME}
+      - ${MYSQL_HOST_NAME}
+    tty: true
+
+  project-get:
+    build: ./Project/Get
+    environment:
+      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
+      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+    depends_on: 
+      - ${RABBITMQ_HOST_NAME}
+      - ${MYSQL_HOST_NAME}
+    tty: true
+
+  project-set:
+    build: ./Project/Set
+    environment:
+      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
+      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+    depends_on:
+      - ${RABBITMQ_HOST_NAME}
+      - ${MYSQL_HOST_NAME}
+    tty: true
