@@ -3,7 +3,17 @@ import pika
 import uuid
 import json
 from flask import Flask, request
+import time
 app = Flask(__name__)
+
+while True:
+	try:
+		connection = pika.BlockingConnection(pika.ConnectionParameters(host=os.environ.get("RABBITMQ_HOST_NAME")))
+		connection.channel()
+		print("Connected to Rabbitmq!!!")
+		break
+	except:
+		time.sleep(1)
 
 class Mensagem(object):
 	def __init__(self, queue):

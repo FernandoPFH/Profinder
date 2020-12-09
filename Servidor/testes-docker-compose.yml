@@ -28,8 +28,6 @@ services:
     build: ./ImagesDB
     volumes:
       - "./ImagesDB/public/images:/public/images"
-    depends_on: 
-      - "apigateway"
     tty: true
     ports:
       - "5100:5000"
@@ -43,8 +41,6 @@ services:
     build: ./Apigateway
     environment:
       RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
-    depends_on:
-      - ${RABBITMQ_HOST_NAME}
     tty: true
     ports:
       - "5050:5000"
@@ -57,9 +53,6 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
-    depends_on: 
-      - ${RABBITMQ_HOST_NAME}
-      - ${MYSQL_HOST_NAME}
     tty: true
 
   account-data-get:
@@ -70,9 +63,6 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
-    depends_on: 
-      - ${RABBITMQ_HOST_NAME}
-      - ${MYSQL_HOST_NAME}
     tty: true
 
   account-data-set:
@@ -83,9 +73,6 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
-    depends_on: 
-      - ${RABBITMQ_HOST_NAME}
-      - ${MYSQL_HOST_NAME}
     tty: true
 
   login-set:
@@ -96,9 +83,6 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
-    depends_on:
-      - ${RABBITMQ_HOST_NAME}
-      - ${MYSQL_HOST_NAME}
     tty: true
 
   getprojectssideinfos:
@@ -109,9 +93,6 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
-    depends_on: 
-      - ${RABBITMQ_HOST_NAME}
-      - ${MYSQL_HOST_NAME}
     tty: true
 
   getuserssideinfos:
@@ -122,9 +103,6 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
-    depends_on: 
-      - ${RABBITMQ_HOST_NAME}
-      - ${MYSQL_HOST_NAME}
     tty: true
 
   searchforprojects:
@@ -135,9 +113,6 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
-    depends_on: 
-      - ${RABBITMQ_HOST_NAME}
-      - ${MYSQL_HOST_NAME}
     tty: true
 
   project-get:
@@ -148,9 +123,6 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
-    depends_on: 
-      - ${RABBITMQ_HOST_NAME}
-      - ${MYSQL_HOST_NAME}
     tty: true
 
   project-set:
@@ -161,7 +133,4 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
-    depends_on:
-      - ${RABBITMQ_HOST_NAME}
-      - ${MYSQL_HOST_NAME}
     tty: true
