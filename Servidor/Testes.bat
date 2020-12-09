@@ -2,10 +2,10 @@
 
 ECHO =================Reiniciando os containers do Docker=================
 
-docker-compose down
+docker-compose -f testes-docker-compose.yml down
 
 for /f "tokens=3" %%i in ('docker images') do (
     docker rmi -f %%i
 )
 
-docker-compose up -d
+docker-compose  -f testes-docker-compose.yml up -d --build

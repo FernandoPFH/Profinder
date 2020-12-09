@@ -13,7 +13,7 @@ services:
       - "5672:5672"
 
   database:
-    build: ./Database/SettingUp
+    image: fernandopfh/database:1.0.0
     hostname: "mysql-server"
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -25,7 +25,7 @@ services:
       - "./Database/Data:/var/lib/mysql"
 
   imagedatabase:
-    build: ./ImagesDB
+    image: fernandopfh/imagedatabase:1.0.0
     volumes:
       - "./ImagesDB/public/images:/public/images"
     depends_on: 
@@ -40,7 +40,7 @@ services:
       - 8080:8080
 
   apigateway:
-    build: ./Apigateway
+    image: fernandopfh/apigateway:1.0.0
     environment:
       RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
     depends_on:
@@ -50,7 +50,7 @@ services:
       - "5050:5000"
 
   login-get:
-    build: ./Login/Get
+    image: fernandopfh/login-get:1.0.0
     environment:
       RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
       MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
@@ -63,7 +63,7 @@ services:
     tty: true
 
   account-data-get:
-    build: ./AccountData/Get
+    image: fernandopfh/account-data-get:1.0.0
     environment:
       RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
       MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
@@ -76,7 +76,7 @@ services:
     tty: true
 
   account-data-set:
-    build: ./AccountData/Set
+    image: fernandopfh/account-data-set:1.0.0
     environment:
       RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
       MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
@@ -89,7 +89,7 @@ services:
     tty: true
 
   login-set:
-    build: ./Login/Set
+    image: fernandopfh/login-set:1.0.0
     environment:
       RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
       MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
@@ -102,7 +102,7 @@ services:
     tty: true
 
   getprojectssideinfos:
-    build: ./ProjectsSideInfos/GetAllAreas
+    image: fernandopfh/getprojectssideinfos:1.0.0
     environment:
       RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
       MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
@@ -115,7 +115,7 @@ services:
     tty: true
 
   getuserssideinfos:
-    build: ./UsersSideInfos/GetAllUsers
+    image: fernandopfh/getuserssideinfos:1.0.0
     environment:
       RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
       MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
@@ -128,7 +128,7 @@ services:
     tty: true
 
   searchforprojects:
-    build: ./ProjectsSideInfos/SearchForProjects
+    image: fernandopfh/searchforprojects:1.0.0
     environment:
       RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
       MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
@@ -141,7 +141,7 @@ services:
     tty: true
 
   project-get:
-    build: ./Project/Get
+    image: fernandopfh/project-get:1.0.0
     environment:
       RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
       MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
@@ -154,7 +154,7 @@ services:
     tty: true
 
   project-set:
-    build: ./Project/Set
+    image: fernandopfh/project-set:1.0.0
     environment:
       RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
       MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
