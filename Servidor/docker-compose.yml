@@ -17,10 +17,10 @@ services:
     hostname: "mysql-server"
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: example
       MYSQL_USER: guest
       MYSQL_PASSWORD: guest
-      BASE_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+      BASE_DATABASE_NAME: Data
     volumes:
       - "./Database/Data:/var/lib/mysql"
 
@@ -40,7 +40,7 @@ services:
   apigateway:
     image: fernandopfh/apigateway:1.0.0
     environment:
-      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
+      RABBITMQ_HOST_NAME: rabbitmq-server
     tty: true
     ports:
       - "5050:5000"
@@ -48,89 +48,89 @@ services:
   login-get:
     image: fernandopfh/login-get:1.0.0
     environment:
-      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
-      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+      RABBITMQ_HOST_NAME: rabbitmq-server
+      MYSQL_HOST_NAME: database
+      MYSQL_USER: root
+      MYSQL_PASSWORD: example
+      MYSQL_DATABASE_NAME: Data
     tty: true
 
   account-data-get:
     image: fernandopfh/account-data-get:1.0.0
     environment:
-      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
-      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+      RABBITMQ_HOST_NAME: rabbitmq-server
+      MYSQL_HOST_NAME: database
+      MYSQL_USER: root
+      MYSQL_PASSWORD: example
+      MYSQL_DATABASE_NAME: Data
     tty: true
 
   account-data-set:
     image: fernandopfh/account-data-set:1.0.0
     environment:
-      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
-      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+      RABBITMQ_HOST_NAME: rabbitmq-server
+      MYSQL_HOST_NAME: database
+      MYSQL_USER: root
+      MYSQL_PASSWORD: example
+      MYSQL_DATABASE_NAME: Data
     tty: true
 
   login-set:
     image: fernandopfh/login-set:1.0.0
     environment:
-      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
-      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+      RABBITMQ_HOST_NAME: rabbitmq-server
+      MYSQL_HOST_NAME: database
+      MYSQL_USER: root
+      MYSQL_PASSWORD: example
+      MYSQL_DATABASE_NAME: Data
     tty: true
 
   getprojectssideinfos:
     image: fernandopfh/getprojectssideinfos:1.0.0
     environment:
-      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
-      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+      RABBITMQ_HOST_NAME: rabbitmq-server
+      MYSQL_HOST_NAME: database
+      MYSQL_USER: root
+      MYSQL_PASSWORD: example
+      MYSQL_DATABASE_NAME: Data
     tty: true
 
   getuserssideinfos:
     image: fernandopfh/getuserssideinfos:1.0.0
     environment:
-      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
-      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+      RABBITMQ_HOST_NAME: rabbitmq-server
+      MYSQL_HOST_NAME: database
+      MYSQL_USER: root
+      MYSQL_PASSWORD: example
+      MYSQL_DATABASE_NAME: Data
     tty: true
 
   searchforprojects:
     image: fernandopfh/searchforprojects:1.0.0
     environment:
-      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
-      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+      RABBITMQ_HOST_NAME: rabbitmq-server
+      MYSQL_HOST_NAME: database
+      MYSQL_USER: root
+      MYSQL_PASSWORD: example
+      MYSQL_DATABASE_NAME: Data
     tty: true
 
   project-get:
     image: fernandopfh/project-get:1.0.0
     environment:
-      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
-      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+      RABBITMQ_HOST_NAME: rabbitmq-server
+      MYSQL_HOST_NAME: database
+      MYSQL_USER: root
+      MYSQL_PASSWORD: example
+      MYSQL_DATABASE_NAME: Data
     tty: true
 
   project-set:
     image: fernandopfh/project-set:1.0.0
     environment:
-      RABBITMQ_HOST_NAME: ${RABBITMQ_HOST_NAME}
-      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+      RABBITMQ_HOST_NAME: rabbitmq-server
+      MYSQL_HOST_NAME: database
+      MYSQL_USER: root
+      MYSQL_PASSWORD: example
+      MYSQL_DATABASE_NAME: Data
     tty: true
