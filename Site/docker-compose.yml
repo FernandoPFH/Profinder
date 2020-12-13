@@ -1,6 +1,21 @@
 version: '3.8'
 services:
-  rabbitmq-server:
+  apigateway:
     image: fernandopfh/site:1.0.0
+    MONGODB_DATABASE: sesiondb
+    MONGODB_USERNAME: root
+    MONGODB_PASSWORD: example
+    MONGODB_HOSTNAME: mongodb
     ports:
       - "5000:5000"
+      
+  mongodb:
+    image: mongo:4.4.2
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: sesiondb
+      MONGODB_DATA_DIR: /data/db
+      MONDODB_LOG_DIR: /dev/null
+    volumes:
+      - mongodbdata:/data/db
