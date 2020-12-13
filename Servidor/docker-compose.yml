@@ -25,11 +25,11 @@ services:
       - "./Database/Data:/var/lib/mysql"
 
   imagedatabase:
-    environment:
-      IP: localhost
-    image: fernandopfh/IP localhost:1.0.0
+    image: fernandopfh/imagedatabase:1.0.0
     volumes:
       - "./ImagesDB/public/images:/public/images"
+    environment:
+      IP: localhost
     tty: true
     ports:
       - "5100:5000"
