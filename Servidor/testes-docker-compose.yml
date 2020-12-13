@@ -25,6 +25,8 @@ services:
       - "./Database/Data:/var/lib/mysql"
 
   imagedatabase:
+    environment:
+      IP: localhost
     build: ./ImagesDB
     volumes:
       - "./ImagesDB/public/images:/public/images"

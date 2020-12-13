@@ -3,7 +3,7 @@ import requests
 from flask import Flask, request, render_template, session, jsonify
 from SessionishModule.sessionishModule import  *
 
-IP = "localhost"
+IP = "191.232.165.79"
 
 app = Flask(__name__)
 app.secret_key = "AlKfhYmYRmTHu65DdbVmWQ"
