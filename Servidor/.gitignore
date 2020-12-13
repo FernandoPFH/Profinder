@@ -5,8 +5,12 @@ Apigateway/
 
 Database/SettingUp/
 
-ImagesDB/
-!ImagesDB/public/images/
+ImagesDB/node_modules/
+ImagesDB/Dockerfile
+ImagesDB/ImagesDB.js
+ImagesDB/package-lock.json
+ImagesDB/package.json
+ImagesDB/Settup.sh
 
 Login/
 
