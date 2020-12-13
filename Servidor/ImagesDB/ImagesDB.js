@@ -5,7 +5,7 @@ var path = require('path');
 const { exec } = require("child_process");
 
 var app = express();
-var server = app.listen(5000);
+var server = app.listen(5500);
 
 console.log(`My socket server is running`);
 
