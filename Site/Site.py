@@ -11,8 +11,6 @@ app = Flask(__name__)
 app.secret_key = "AlKfhYmYRmTHu65DdbVmWQ"
 app.config["MONGO_URI"] = 'mongodb://' + os.environ['MONGODB_USERNAME'] + ':' + os.environ['MONGODB_PASSWORD'] + '@' + os.environ['MONGODB_HOSTNAME'] + ':27017/' + os.environ['MONGODB_DATABASE']
 
-print(IP)
-
 @app.route('/')
 def main():
 	return render_template("Main.html")
