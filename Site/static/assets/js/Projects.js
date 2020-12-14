@@ -91,7 +91,7 @@ function SearchForProjects () {
     } else {
       let ListOfProjectsElement = document.getElementById("ProjectsList");
       ListOfProjectsElement.innerHTML = "";
-      alert("Nenhum projeto encontrado!!!");
+      alert(data.Porque);
     }
 });
 }
