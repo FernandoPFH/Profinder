@@ -58,9 +58,9 @@ function ADACheckBoxClick(SelfElement) {
 function SearchForProjects () {
   let SpecificTypeToSearch = "";
 
-  if (document.getElementById("A-List").getElementsByTagName('li').item(0).getElementsByTagName('input').checked) {
+  if (document.getElementById("A-List").getElementsByTagName('li').item(0).getElementsByTagName('input').item(0).checked) {
     SpecificTypeToSearch = "prof";
-  } else if (document.getElementById("A-List").getElementsByTagName('li').item(1).getElementsByTagName('input').checked) {
+  } else if (document.getElementById("A-List").getElementsByTagName('li').item(1).getElementsByTagName('input').item(0).checked) {
     SpecificTypeToSearch = "aluno";
   }
 
