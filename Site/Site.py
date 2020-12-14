@@ -25,11 +25,11 @@ def signup():
 
 @app.route('/account_data/<code>')
 def prof_info(code):
-	return render_template("MyAccount.html",UserCode=code)
+	return render_template("MyAccount.html",UserCode=code,IP=IP)
 
 @app.route('/create_project/<code>')
 def create_project(code):
-	return render_template("CreateProject.html",ProjectCode=code)
+	return render_template("CreateProject.html",ProjectCode=code,IP=IP)
 
 @app.route('/project/<code>')
 def project(code):
@@ -162,7 +162,10 @@ def update_image_account_data(image_data):
 			for key,value in singleData.items():
 				restHeader += key.lower() + "=" + value + "&"
 
-		return requests.post(f"http://{IP}:5050/update_image/{restHeader}updateprojectimage={str(data['updateProjectImage'])}&projectcode={data['ProjectCode']}&image={image_data}").json()
+		if int(data['updateProjectImage']):
+			restHeader += f"projectcode={data['ProjectCode']}&"
+
+		return requests.post(f"http://{IP}:5050/update_image/{restHeader}updateprojectimage={str(data['updateProjectImage'])}&image={image_data}").json()
 
 @app.route("/send_data_for_projects/<json_for_project>", methods=['GET','POST'])
 def send_data_for_projects(json_for_project):
