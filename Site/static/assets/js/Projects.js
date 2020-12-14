@@ -73,7 +73,6 @@ function SearchForProjects () {
   }).then((data) => {
     // Work with JSON data here
     if (data.Aceito) {
-        console.log(data);
         let ListOfProjectsElement = document.getElementById("ProjectsList");
         ListOfProjectsElement.innerHTML = "";
         for (let i = 0; i<data.Projetos.length; i++) {

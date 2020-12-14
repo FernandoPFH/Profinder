@@ -267,8 +267,6 @@ def search_for_projects(json_for_search):
 			urlStr += "&area" + str(areaIndex) + "=" + str(area)
 			areaIndex+=1
 
-		print(urlStr)
-
 		return requests.get(urlStr).json()
 
 @app.route("/send_data_for_projectssideinfos/", methods=['GET'])
