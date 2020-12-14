@@ -116,7 +116,7 @@ $(document).ready(async function() { $('#summernote').summernote({
       });
 
   if (ProjectCode != "new") {
-      document.getElementById("ProjectCode").textContext = "Edit Project";
+      document.getElementById("Title").textContext = "Editar Projeto";
 
       Data = {"sessionishClientId":sessionStorage.getItem("sessionishClientId"),"ProjectCode":ProjectCode,"Titulo":-1,"Area":-1,"UserCode":-1,"Publicado":-1}
 
