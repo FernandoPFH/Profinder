@@ -266,7 +266,7 @@ function saveCode() {
       usersList.push(escolhidasDeMembros[i][2]);
     }
 
-    if (ProjectCode) {
+    if (ProjectCode != "new") {
         if (tituloStr.length > 0 && areasList.length > 0 && usersList.length > 0) {
             Data = {"createMethod":0,"sessionishClientId":sessionStorage.getItem("sessionishClientId"),"Titulo":tituloStr,"Areas":areasList,"Users":usersList,"Desc":encodeURIComponent(markupStr),"Publicado":publicado,"ProjectCode":ProjectCode}
 
@@ -331,7 +331,7 @@ function publishCode() {
       usersList.push(escolhidasDeMembros[i][2]);
     }
 
-    if (ProjectCode) {
+    if (ProjectCode != "new") {
         if (tituloStr.length > 0 && areasList.length > 0 && markupStr.length > 0) {
             Data = {"createMethod":0,"sessionishClientId":sessionStorage.getItem("sessionishClientId"),"Titulo":tituloStr,"Areas":areasList,"Users":usersList,"Desc":encodeURIComponent(markupStr),"Publicado":(publicado)?0:1,"ProjectCode":ProjectCode}
 
@@ -391,7 +391,7 @@ function ChangeImagePopUp() {
 }
 
 function ChangeImageData() {
-    if (ProjectCode) {
+    if (ProjectCode != "new") {
       const PORT = 5100;
       var file = document.getElementById('FileToGet').files[0];
       var fileReader = new FileReader();
