@@ -75,7 +75,7 @@ function SearchForProjects () {
     if (data.Aceito) {
         console.log(data);
         let ListOfProjectsElement = document.getElementById("ProjectsList");
-        ListOfProjectsElement.innerHTML;
+        ListOfProjectsElement.innerHTML = "";
         for (let i = 0; i<data.Projetos.length; i++) {
           let ProjetoElement = `<a href="/project/${data.Projetos[i]}" style="text-decoration: none;"><div class="d-xl-flex flex-row justify-content-xl-start align-items-xl-start ProjectItem" style="background: #f7ccb4;border-width: 1px;border-style: solid;"><img class="ProjectItem" style="width: 180px;height: 180px;background: #ffffff;" src="${data.Projetos[i].Image}" /><div class="d-xl-flex flex-column justify-content-xl-center align-items-xl-start"> <div class="d-xl-flex justify-content-xl-center align-items-xl-start ProjectItem-div" style="margin-left: -1px;"><strong>${data.Projetos[i].Titulo}<br /></strong></div><div class="d-flex flex-wrap ProjectItem-div" style="padding-top: 4px;"><p class="d-flex ProjectItem-div" style="width: 56px;height: 27px;margin-bottom: -6px;margin-top: -5px;">Areas:</p>`;
           for (let j = 0; j<data.Projetos[i].Areas.length; j++) {
