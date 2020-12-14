@@ -11,6 +11,8 @@ app = Flask(__name__)
 app.secret_key = "AlKfhYmYRmTHu65DdbVmWQ"
 app.config["MONGO_URI"] = 'mongodb://' + os.environ['MONGODB_USERNAME'] + ':' + os.environ['MONGODB_PASSWORD'] + '@' + os.environ['MONGODB_HOSTNAME'] + ':27017/' + os.environ['MONGODB_DATABASE']
 
+print(IP)
+
 @app.route('/')
 def main():
 	return render_template("Main.html")
@@ -183,7 +185,6 @@ def send_data_for_projects(json_for_project):
 			except:
 				userCode = "-1"
 			dataToReturn = json.loads(requests.get(f"http://{IP}:5050/projects/?usercode={str(userCode)}&area={str(data['Area'])}&titulo={str(data['Titulo'])}&projectcode={str(data['ProjectCode'])}&publicado={str(data['Publicado'])}").text)
-			print(dataToReturn)
 			for i in range(len(dataToReturn["Projetos"])):
 				dataToReturn["Projetos"][i]["IsYourCode"] = False
 			return jsonify(dataToReturn)
