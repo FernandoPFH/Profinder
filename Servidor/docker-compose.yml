@@ -32,7 +32,7 @@ services:
       IP: localhost
     tty: true
     ports:
-      - "5100:5000"
+      - "5100:5050"
 
   db-management:
     image: adminer:4.7.7-standalone
