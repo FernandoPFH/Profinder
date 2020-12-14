@@ -183,6 +183,7 @@ def send_data_for_projects(json_for_project):
 			except:
 				userCode = "-1"
 			dataToReturn = json.loads(requests.get(f"http://{IP}:5050/projects/?usercode={str(userCode)}&area={str(data['Area'])}&titulo={str(data['Titulo'])}&projectcode={str(data['ProjectCode'])}&publicado={str(data['Publicado'])}").text)
+			print(dataToReturn)
 			for i in range(len(dataToReturn["Projetos"])):
 				dataToReturn["Projetos"][i]["IsYourCode"] = False
 			return jsonify(dataToReturn)
@@ -198,6 +199,7 @@ def send_data_for_projects(json_for_project):
 					userCode = "-1"
 
 			dataToReturn = json.loads(requests.get(f"http://{IP}:5050/projects/?usercode={userCode}&area={str(data['Area'])}&titulo={str(data['Titulo'])}&projectcode={str(data['ProjectCode'])}&publicado={str(data['Publicado'])}").text)
+			print(dataToReturn)
 			for i in range(len(dataToReturn["Projetos"])):
 				dataToReturn["Projetos"][i]["IsYourCode"] = False
 				for j in range(len(dataToReturn["Projetos"][i]["Users"])):
