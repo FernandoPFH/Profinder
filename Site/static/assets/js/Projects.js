@@ -89,7 +89,9 @@ function SearchForProjects () {
           ListOfProjectsElement.innerHTML += ProjetoElement;
         }
     } else {
-      alert("Algo Deu Errado!!!");
+      let ListOfProjectsElement = document.getElementById("ProjectsList");
+      ListOfProjectsElement.innerHTML = "";
+      alert("Nenhum projeto encontrado!!!");
     }
 });
 }
