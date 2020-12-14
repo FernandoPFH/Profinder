@@ -1,7 +1,4 @@
-var UserCode;
 $(document).ready(() => {
-    UserCode = document.getElementById("UserCode").innerHTML;
-
     window.onclick = function(event) {
       var modal = document.getElementById("myModal");
       if (event.target == modal) {
@@ -142,7 +139,6 @@ function ChangeImagePopUp() {
 }
 
 function ChangeImageData() {
-    const IP = "127.0.0.1";
     const PORT = 5100;
     var file = document.getElementById('FileToGet').files[0];
     var fileReader = new FileReader();

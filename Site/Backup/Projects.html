@@ -19,7 +19,7 @@
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark navbar-custom">
         <div class="container"><a class="navbar-brand" href="/">Profinder</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive"><span class="navbar-toggler-icon"></span></button>
-            <div class="d-xl-flex align-items-xl-center" style="height: 35px;display: block;position: absolute;left: 50%;transform: translateX(-50%);"><input type="text" id="SearchBar" style="width: 503px;margin-right: 4px;border-radius: 8px;border-color: rgba(0,0,0,0);" placeholder="Pesquisar Projeto Por Titulo"><a onclick="SearchProjects()"><img src="/static/assets/img/search_icon.png" style="height: 30px;width: 30px;" onclick="SearchForProjects ()"></a></div>
+            <div class="d-xl-flex align-items-xl-center" style="height: 35px;display: block;position: absolute;left: 50%;transform: translateX(-50%);"><input type="text" id="SearchBar" style="width: 503px;margin-right: 4px;border-radius: 8px;border-color: rgba(0,0,0,0);" placeholder="Pesquisar Projeto Por Titulo"><img src="/static/assets/img/search_icon.png" style="height: 30px;width: 30px;" onclick="SearchForProjects()"></div>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="/signup/"><strong>Criar Conta</strong><br></a></li>
@@ -37,6 +37,7 @@
                         <div class="d-xl-flex justify-content-xl-start align-items-xl-center sidebar-item sidebar-section"><strong class="sidebar-section-text">Preferencia do professor</strong></div>
                         <ul class="list-group" id="PDP-List">
                             <li class="list-group-item d-xl-flex justify-content-xl-start align-items-xl-center sidebar-item"><input type="checkbox" style="margin-left: -11px;"><label class="d-xl-flex sidebar-item-text" style="margin-top: 7px;margin-left: 4px;">Tema do aluno</label></li>
+                            <li class="list-group-item d-xl-flex justify-content-xl-start align-items-xl-center sidebar-item"><input type="checkbox" style="margin-left: -11px;"><label class="d-xl-flex sidebar-item-text" style="margin-top: 7px;margin-left: 4px;">Tema do professor</label></li>
                         </ul>
                         <div class="d-xl-flex justify-content-xl-start align-items-xl-center sidebar-item sidebar-section"><strong class="sidebar-section-text">Autor</strong></div>
                         <ul class="list-group" id="A-List">
@@ -49,7 +50,19 @@
                         </ul>
                     </div>
                     <div id="ListViewer" style="height: 744px;">
-                        <ul class="list-group" id="ProjectsList" style="width: 100%;height: 100%;border: 1px solid rgb(0,0,0);margin-left: 4px;"></ul>
+                        <div id="ProjectsList" style="width: 100%;height: 100%;border: 1px solid rgb(0,0,0);margin-left: 4px;"><a>
+                                <div class="d-xl-flex flex-row justify-content-xl-start align-items-xl-start ProjectItem" style="background: #f7ccb4;border-width: 1px;border-style: solid;"><img class="ProjectItem" style="width: 180px;height: 180px;background: #ffffff;" src="/static/assets/img/search_icon.png">
+                                    <div class="d-xl-flex flex-column justify-content-xl-center align-items-xl-start">
+                                        <div class="d-xl-flex justify-content-xl-center align-items-xl-start ProjectItem-div" style="margin-left: -1px;"><strong>Estudo da Inteligencia Artificial para a Computação Quântica<br></strong></div>
+                                        <div class="d-flex flex-wrap ProjectItem-div" style="padding-top: 4px;">
+                                            <p class="d-flex ProjectItem-div" style="width: 56px;height: 27px;margin-bottom: -6px;margin-top: -5px;">Areas:</p>
+                                        </div>
+                                        <div class="d-flex flex-wrap ProjectItem-div" style="padding-top: 4px;">
+                                            <p class="d-flex ProjectItem-div" style="width: 86px;height: 27px;margin-bottom: -6px;margin-top: -5px;">Membros:</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
                     </div>
                 </div>
             </div>

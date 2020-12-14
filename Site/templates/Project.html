@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/untitled.css') }}">
     <script src="{{ url_for('static',filename='assets/js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static',filename='assets/bootstrap/js/bootstrap.min.js') }}"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script> var ProjectCode = '{{ProjectCode}}';  </script>
 <script src="{{ url_for('static',filename='assets/js/TestIfLoged.js') }}"></script>
 <script src="{{ url_for('static',filename='assets/js/SearchBar.js') }}"></script>
 <script src="{{ url_for('static',filename='assets/js/Project.js') }}"></script>
@@ -32,7 +33,7 @@
         </div>
     </nav>
     <main class="d-xl-flex justify-content-xl-center masthead text-center text-white" style="height: 100%;">
-        <div id="ProjectHoleDiv" class="masthead-content" style="background-color: #ffffff;width: 957px;height: 809px;margin-top: -92px;">
+        <div id="ProjectHoleDiv" class="masthead-content" style="background-color: #ffffff;width: 957px;height: 809px;margin-top: -92px;overflow-y: auto;">
             <div class="container" style="width: 100%;">
                 <h1 style="margin-bottom: 32px;border-color: rgb(255,255,255);color: rgb(0,0,0);">Projeto</h1>
                 <div class="d-xl-flex justify-content-xl-center" style="height: 199px;">
@@ -54,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-xl-flex justify-content-xl-center" style="width: 100%;height: 100%;">
+            <div class="d-xl-flex justify-content-xl-center" style="width: 100%;height: fit-content;">
                 <div id="ProjectDesc" style="width: 98%;height: 64%;color: rgb(0,0,0);"></div>
             </div>
         </div><var style="display:none" id="ProjectCode">{{ProjectCode}}</var>

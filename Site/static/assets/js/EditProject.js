@@ -1,4 +1,3 @@
-var projectCode;
 var publicado = 0;
 var possibilidadesDeAreas = [];
 var escolhidasDeAreas = [];
@@ -116,12 +115,10 @@ $(document).ready(async function() { $('#summernote').summernote({
           }
       });
 
-  if (document.getElementById("ProjectCode").innerHTML != "new") {
+  if (ProjectCode != "new") {
       document.getElementById("ProjectCode").textContext = "Edit Project";
 
-      projectCode = document.getElementById("ProjectCode").innerHTML;
-
-      Data = {"sessionishClientId":sessionStorage.getItem("sessionishClientId"),"ProjectCode":projectCode,"Titulo":-1,"Area":-1,"UserCode":-1,"Publicado":-1}
+      Data = {"sessionishClientId":sessionStorage.getItem("sessionishClientId"),"ProjectCode":ProjectCode,"Titulo":-1,"Area":-1,"UserCode":-1,"Publicado":-1}
 
       fetch('/send_data_for_projects/'+JSON.stringify(Data), {
         method: 'GET',
@@ -269,9 +266,9 @@ function saveCode() {
       usersList.push(escolhidasDeMembros[i][2]);
     }
 
-    if (projectCode) {
+    if (ProjectCode) {
         if (tituloStr.length > 0 && areasList.length > 0 && usersList.length > 0) {
-            Data = {"createMethod":0,"sessionishClientId":sessionStorage.getItem("sessionishClientId"),"Titulo":tituloStr,"Areas":areasList,"Users":usersList,"Desc":encodeURIComponent(markupStr),"Publicado":publicado,"ProjectCode":projectCode}
+            Data = {"createMethod":0,"sessionishClientId":sessionStorage.getItem("sessionishClientId"),"Titulo":tituloStr,"Areas":areasList,"Users":usersList,"Desc":encodeURIComponent(markupStr),"Publicado":publicado,"ProjectCode":ProjectCode}
 
             fetch('/send_data_for_projects/'+JSON.stringify(Data), {
               method: 'POST',
@@ -303,7 +300,7 @@ function saveCode() {
               }).then((data) => {
                 // Work with JSON data here
                 if (data.Aceito) {
-                  projectCode = data.ProjectCode;
+                  ProjectCode = data.ProjectCode;
                   alert("Projeto salvo!!!");
                 } else {
                   alert("Algo Deu Errado");
@@ -334,9 +331,9 @@ function publishCode() {
       usersList.push(escolhidasDeMembros[i][2]);
     }
 
-    if (projectCode) {
+    if (ProjectCode) {
         if (tituloStr.length > 0 && areasList.length > 0 && markupStr.length > 0) {
-            Data = {"createMethod":0,"sessionishClientId":sessionStorage.getItem("sessionishClientId"),"Titulo":tituloStr,"Areas":areasList,"Users":usersList,"Desc":encodeURIComponent(markupStr),"Publicado":(publicado)?0:1,"ProjectCode":projectCode}
+            Data = {"createMethod":0,"sessionishClientId":sessionStorage.getItem("sessionishClientId"),"Titulo":tituloStr,"Areas":areasList,"Users":usersList,"Desc":encodeURIComponent(markupStr),"Publicado":(publicado)?0:1,"ProjectCode":ProjectCode}
 
             fetch('/send_data_for_projects/'+JSON.stringify(Data), {
               method: 'POST',
@@ -370,7 +367,7 @@ function publishCode() {
               }).then((data) => {
                 // Work with JSON data here
                 if (data.Aceito) {
-                  projectCode = data.ProjectCode;
+                  ProjectCode = data.ProjectCode;
                   publicado = (publicado)?0:1;
                   document.getElementById("PublishButton").innerText = (publicado) ? "Ocultar" : "Publicar";
                   alert("Projeto publicado!!!");
@@ -394,8 +391,7 @@ function ChangeImagePopUp() {
 }
 
 function ChangeImageData() {
-    if (projectCode) {
-      const IP = "127.0.0.1";
+    if (ProjectCode) {
       const PORT = 5100;
       var file = document.getElementById('FileToGet').files[0];
       var fileReader = new FileReader();
@@ -408,7 +404,7 @@ function ChangeImageData() {
           socket.on('Response', (data)=>{
             data.sessionishClientId = sessionStorage.getItem("sessionishClientId");
             data.updateProjectImage = 1;
-            data.ProjectCode = projectCode;
+            data.ProjectCode = ProjectCode;
               fetch('/update_image_account_data/'+JSON.stringify(data), {
                   method: 'POST',
               }).then((response) => {
@@ -417,7 +413,7 @@ function ChangeImageData() {
                   // Work with JSON data here
                   if(dataresponse.Aceito){
                       alert("Foto Mudadas");
-                      location.reload()
+                      window.location.href = `/create_project/${ProjectCode}`;
                   }else{
                       alert(dataresponse.Porque);
                       

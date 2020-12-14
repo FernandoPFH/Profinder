@@ -1,6 +1,4 @@
-var ProjectCode; 
 $(document).ready(() => {
-    ProjectCode = document.getElementById("ProjectCode").innerHTML;
     
     Data = {"sessionishClientId":sessionStorage.getItem("sessionishClientId"),"ProjectCode":ProjectCode,"Titulo":-1,"Area":-1,"UserCode":-1,"Publicado":-1}
     
