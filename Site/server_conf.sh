@@ -1,3 +1,5 @@
+cd /home/azureuser
+
 sudo apt update
 sudo apt install nginx
 
