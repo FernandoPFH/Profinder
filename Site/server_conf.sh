@@ -1,7 +1,3 @@
-cd /home/azureuser
-
-git clone https://github.com/FernandoPFH/Profinder.git
-
 sudo apt update
 sudo apt install nginx
 
