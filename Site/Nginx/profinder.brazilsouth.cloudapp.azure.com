@@ -7,17 +7,17 @@ server {
         include proxy_params;
     }
 
-    location /images/ {
+    location ~ /images/ {
         proxy_pass http://127.0.0.1:5100;
         include proxy_params;
     }
 
-    location /profinder_api/ {
+    location ~ /profinder_api/ {
         proxy_pass http://127.0.0.1:5050;
         include proxy_params;
     }
 
-    location /db_admin/ {
+    location ~ /db_admin/ {
         proxy_pass http://127.0.0.1:8080;
         include proxy_params;
     }

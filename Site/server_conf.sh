@@ -15,6 +15,8 @@ sudo nginx -t
 
 sudo systemctl restart nginx
 
+sudo apt install certbot python3-certbot-nginx
+
 sudo certbot --nginx -d profinder.brazilsouth.cloudapp.azure.com -d profinder.brazilsouth.cloudapp.azure.com
 
 sudo apt-get update
