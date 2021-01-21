@@ -17,7 +17,7 @@ sudo systemctl restart nginx
 
 sudo apt install certbot python3-certbot-nginx
 
-sudo certbot --nginx -d profinder.brazilsouth.cloudapp.azure.com -d profinder.brazilsouth.cloudapp.azure.com
+printf "19.00499-0@maua.br\na\ny\n1" | sudo certbot --nginx -d profinder.brazilsouth.cloudapp.azure.com -d profinder.brazilsouth.cloudapp.azure.com
 
 sudo apt-get update
 
@@ -49,8 +49,8 @@ sudo nano docker-compose.yml
 
 sudo docker-compose up -d --build
 
-#cd ../Servidor
+cd ../Servidor
 
-#sudo nano docker-compose.yml
+sudo nano docker-compose.yml
 
-#sudo docker-compose up -d --build
+sudo docker-compose up -d --build
