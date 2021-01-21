@@ -1,7 +1,7 @@
 cd /home/azureuser
 
 sudo apt update
-sudo apt install nginx
+printf "y" | sudo apt install nginx
 
 sudo ufw allow 'Nginx Full'
 
@@ -15,13 +15,13 @@ sudo nginx -t
 
 sudo systemctl restart nginx
 
-sudo apt install certbot python3-certbot-nginx
+printf "y" | sudo apt install certbot python3-certbot-nginx 
 
-printf "19.00499-0@maua.br\na\ny\n1" | sudo certbot --nginx -d profinder.brazilsouth.cloudapp.azure.com -d profinder.brazilsouth.cloudapp.azure.com
+printf "19.00499-0@maua.br\na\ny\n1" | sudo certbot --nginx -d profinder.brazilsouth.cloudapp.azure.com -d profinder.brazilsouth.cloudapp.azure.com --non-interactive
 
 sudo apt-get update
 
-sudo apt-get install \
+printf "y" | sudo apt-get install \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -37,7 +37,7 @@ sudo add-apt-repository \
 
 sudo apt-get update
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io
+printf "y" | sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
