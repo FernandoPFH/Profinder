@@ -17,7 +17,7 @@ sudo systemctl restart nginx
 
 printf "y" | sudo apt install certbot python3-certbot-nginx 
 
-printf "19.00499-0@maua.br\na\ny\n1" | sudo certbot --nginx -d profinder.brazilsouth.cloudapp.azure.com -d profinder.brazilsouth.cloudapp.azure.com --non-interactive
+sudo certbot --nginx -d profinder.brazilsouth.cloudapp.azure.com -d profinder.brazilsouth.cloudapp.azure.com --non-interactive --agree-tos -m 19.00499-0@maua.br
 
 sudo apt-get update
 
