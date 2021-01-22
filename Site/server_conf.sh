@@ -1,5 +1,9 @@
 cd /home/azureuser
 
+mv /home/azureuser/Profinder/Site/Nginx/nginx.conf /home/azureuser/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com
+
+openssl dhparam -out /home/azureuser/Profinder/Site/Certificates/dhparam.pem 4096
+
 sudo apt update
 printf "y" | sudo apt install nginx
 
@@ -20,7 +24,6 @@ printf "y" | sudo apt install certbot python3-certbot-nginx
 sudo certbot --nginx -d profinder.brazilsouth.cloudapp.azure.com -d profinder.brazilsouth.cloudapp.azure.com --non-interactive --agree-tos -m 19.00499-0@maua.br
 
 sudo apt-get update
-
 printf "y" | sudo apt-get install \
     apt-transport-https \
     ca-certificates \

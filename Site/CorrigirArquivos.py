@@ -29,7 +29,6 @@ linhasASeremRetiradas = [
     b'<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">',
     b'<link rel="stylesheet" href="assets/css/untitled.css">',
     b'<script src="assets/js/EditProject.js"></script>',
-    b'<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>'
     b'<script src="assets/js/jquery.min.js"></script>',
     b'<script src="assets/bootstrap/js/bootstrap.min.js"></script>',
     b'<script src="assets/js/Login.js"></script>',

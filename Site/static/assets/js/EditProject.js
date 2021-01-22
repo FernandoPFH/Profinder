@@ -6,7 +6,7 @@ var escolhidasDeMembros = [];
 
 $(document).ready(async function() { $('#summernote').summernote({
   tabsize: 2,
-  height: 400,
+  height: $('#summernote').height() - 53,
   width: "90%"
   });
 

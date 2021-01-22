@@ -10,9 +10,6 @@ main.masthead {
   background-size: cover;
 }
 
-.masthead-content {
-}
-
 html {
   height: 100%;
 }
@@ -59,19 +56,28 @@ main.masthead .bg-circle-4 {
 main.masthead .masthead-content {
   z-index: 1;
   position: relative;
+  overflow-y: auto;
+  height: Calc(100% + 112px);
+}
+
+#ProjectImageContainer {
+  width: 232px;
+  height: inherit;
+  display: block;
 }
 
 #ImageContainer {
-  float: left;
-  width: 25%;
+  width: 232px;
   height: inherit;
   display: block;
 }
 
 #InfoContainer {
-  float: right;
-  width: 75%;
-  height: inherit;
+  height: 100%;
+  padding-top: 12px;
+  padding-left: 48px;
+  padding-right: 32px;
+  padding-bottom: 12px;
 }
 
 div.ImageContainer {
@@ -97,7 +103,6 @@ div.ImageContainer:hover div.overlay {
 }
 
 #SideBar {
-  float: left;
   width: 20%;
   height: 100%;
 }
@@ -113,7 +118,10 @@ div.ImageContainer:hover div.overlay {
 }
 
 .sidebar-item {
-  height: 20px;
+  width: 100%;
+  border-right: 1px solid rgba(17,68,221,0.59);
+  border-bottom: 1px solid rgba(17,68,221,0.59);
+  border-left: 1px solid rgba(17,68,221,0.59);
 }
 
 strong.sidebar-section {
@@ -139,7 +147,6 @@ img {
   overflow-x: hidden;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 23px;
 }
 
 .AreaEscolhida div {
@@ -242,14 +249,19 @@ img {
 .customizedmodal-content {
   display: table;
   background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
+  margin: 75px auto;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
   border: 1px solid #888;
-  width: 80%;
+  width: 975px;
 }
 
-.customizedmodal-content div {
-  display: table-cell;
+@media (max-width: 590px) {
+  .div-column {
+    display: flex;
+    flex-direction: column!important;
+  }
 }
 
 nav {
@@ -266,9 +278,7 @@ nav {
 }
 
 .Amostras {
-  margin-left: 27px;
   margin-bottom: 5px;
-  width: 515px;
   height: 46px;
   display: flex;
   flex-wrap: wrap;
@@ -287,14 +297,16 @@ nav {
 
 .ProjectItem {
   width: 100%;
-  height: 182px;
   margin-bottom: 2px;
   color: black;
+  background: #f7ccb4;
+  border-width: 1px;
+  border-style: solid;
 }
 
 .ProjectItem-div {
   width: 100%;
-  height: 60px;
+  min-height: 60px;
   font-size: 20px;
   font-weight: bold;
   margin-left: 2px;
@@ -304,5 +316,267 @@ p.ProjectItem-div {
   margin-left: 11px;
   font-size: 18px;
   margin-bottom: auto;
+}
+
+@media (min-width:1200px) {
+  .searchbardiv {
+    height: 35px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width:1199px) {
+  #navbarResponsive {
+    margin-top: 11px;
+    padding-top: 7px;
+    padding-left: 11px;
+    padding-right: 11px;
+    background-color: #23272c;
+  }
+}
+
+#SearchBar {
+  width: 557px;
+  margin-right: 4px;
+  border-radius: 8px;
+  border-color: rgba(0,0,0,0);
+}
+
+@media (max-width: 1199px) {
+  #SearchBar {
+    width: Calc(100% - 34px);
+  }
+}
+
+.LoginInput {
+  width: 100%;
+}
+
+.LoginInputContainer {
+  width: 460px;
+}
+
+@media (max-width: 460px) {
+  .LoginInputContainer {
+    width: 100%;
+  }
+}
+
+.masthead-content-special {
+  background-color: #ffffff;
+  width: 40%;
+  height: Calc(100% + 112px);
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  z-index: 1;
+  overflow-y: auto;
+}
+
+@media (max-width: 957px) {
+  .masthead-content-special {
+    width: Calc(100% - 30px);
+  }
+}
+
+@media (max-width: 957px) {
+  #EditButton {
+    width: 100%;
+  }
+}
+
+.MyAccountHeader {
+  margin-bottom: 32px;
+  border-color: rgb(255,255,255);
+  color: rgb(0,0,0);
+  width: 100%;
+}
+
+.MyAccountDataContainer {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+#MyAccountData {
+  width: 100%;
+}
+
+@media (max-width: 724px) {
+  #MyAccountData {
+    flex-direction: column!important;
+  }
+}
+
+.MyAccountInput {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 724px) {
+  .MyAccountInput {
+    justify-content: center!important;
+  }
+}
+
+@media (max-width: 724px) {
+  #InfoContainer {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media (max-width: 370px) {
+  .MyAccountInput {
+    flex-direction: column;
+    justify-content: center!important;
+  }
+}
+
+@media (max-width: 370px) {
+  .MyProjectInput {
+    flex-direction: column;
+    justify-content: center!important;
+  }
+}
+
+.MyAccountInputs {
+  width: 232px;
+  margin-left: 22px;
+}
+
+@media (max-width: 370px) {
+  .MyAccountInputs {
+    margin-left: 0px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 350px) {
+  .MyAccountHeader {
+    width: 256px;
+  }
+}
+
+@media (max-width: 902px) {
+  #MyProjectData {
+    flex-direction: column!important;
+    justify-content: center!important;
+  }
+}
+
+.ProjectImageContainer {
+  width: 233px;
+}
+
+@media (max-width: 902px) {
+  .ProjectImageContainer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 902px) {
+  #ImageContainer {
+    width: 100%;
+  }
+}
+
+.MyProjectInput {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 902px) {
+  .MyProjectInput {
+    justify-content: center!important;
+  }
+}
+
+.MyProjectInputs {
+  width: 400px;
+  margin-left: 22px;
+}
+
+@media (max-width: 370px) {
+  .MyProjectInputs {
+    margin-left: 0px;
+    width: 100%;
+  }
+}
+
+#PublishButton {
+  background-color: rgb(52,58,64);
+  margin-top: 10px;
+  margin-bottom: 22px;
+  margin-left: 274px;
+  width: 97px;
+}
+
+@media (max-width: 540px) {
+  #PublishButton {
+    margin-left: 37px;
+  }
+}
+
+@media (max-width: 630px) {
+  .DivDeEscolhas {
+    width: 100%;
+  }
+}
+
+@media (max-width: 804px) {
+  .InfosDiv {
+    flex-direction: column;
+  }
+}
+
+#Titulo {
+}
+
+#TituloOfProject {
+  margin-top: 8px;
+  width: 100%;
+}
+
+@media (max-width: 622px) {
+  #TituloOfProject {
+    flex-direction: column;
+  }
+}
+
+.sidebar-item:hover {
+  text-decoration: none;
+}
+
+.sidebar-item input {
+  margin-left: 11px;
+  margin-right: 11px;
+  pointer-events: none;
+}
+
+@media (max-width: 1012px) {
+  .projects-customizedmodal-content {
+    width: Calc(100% - 30px);
+  }
+}
+
+#autor-div {
+  width: 100%;
+}
+
+@media (max-width: 620px) {
+  .ProjectItem {
+    flex-direction: column!important;
+  }
+}
+
+.ProjectItem.special {
+  width: 180px;
+  height: 180px;
+  background: #ffffff;
 }
 

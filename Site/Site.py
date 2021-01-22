@@ -54,7 +54,7 @@ def send_data_for_login(json_for_login):
 	if request.method == 'GET':
 		User = json.loads(json_for_login)
 
-		response = json.loads(requests.get(f"http://{IP}:5050/login/?email={User['Email']}&password={User['Password']}").text)
+		response = json.loads(requests.get(f"https://{IP}/api/login/?email={User['Email']}&password={User['Password']}").text)
 
 		if response["Aceito"]:
 			clientIPAdress = request.remote_addr
@@ -80,7 +80,7 @@ def send_data_for_login(json_for_login):
 	if request.method == 'POST':
 		User = json.loads(json_for_login)
 
-		response = json.loads(requests.post(f"http://{IP}:5050/login/?email={User['Email']}&password={User['Password']}&name={User['Name']}&type={User['Type']}").text)
+		response = json.loads(requests.post(f"https://{IP}/api/login/?email={User['Email']}&password={User['Password']}&name={User['Name']}&type={User['Type']}").text)
 
 		if response["Aceito"]:
 			clientIPAdress = request.remote_addr
@@ -121,7 +121,7 @@ def try_login_by_session_data(sessionishClientId):
 
 				restHeader = restHeader[:-1]
 
-				return requests.get(f"http://{IP}:5050/login/{restHeader}").json()
+				return requests.get(f"https://{IP}/api/login/{restHeader}").json()
 
 			else:
 				return jsonify({"Aceito":False})
@@ -150,11 +150,11 @@ def send_data_for_account(json_for_account):
 			restHeader = "?"
 			for key,value in sessionishRequestResponse.items():
 				restHeader += key.lower() + "=" + value + "&"
-			response = json.loads(requests.get(f"http://{IP}:5050/account_data/{restHeader}method={Data['Method']}").text)
+			response = json.loads(requests.get(f"https://{IP}/api/account_data/{restHeader}method={Data['Method']}").text)
 			response["IsYourCode"] = True
 			return jsonify(response)
 		else:
-			response = json.loads(requests.get(f"http://{IP}:5050/account_data/?usercode={usercode}&method={Data['Method']}").text)
+			response = json.loads(requests.get(f"https://{IP}/api/account_data/?usercode={usercode}&method={Data['Method']}").text)
 			response["IsYourCode"] = False
 			response["UserCode"] = usercode
 			return jsonify(response)
@@ -164,7 +164,7 @@ def send_data_for_account(json_for_account):
 		clientIPAdress = request.remote_addr
 		mongoClient = MongoClient(MongoURI)
 		checkdata = newSessionishRequest(mongoClient,User["sessionishClientId"],clientIPAdress,["Email","Password","UserCode"])
-		return  requests.post(f"http://{IP}:5050/account_data/?email_antigo={checkdata['Email']}&password_antigo={checkdata['Password']}&usercode={checkdata['UserCode']}&email_novo={User['Email']}&password_novo={User['Password']}&name={User['Name']}&type={User['Type']}").json()
+		return  requests.post(f"https://{IP}/api/account_data/?email_antigo={checkdata['Email']}&password_antigo={checkdata['Password']}&usercode={checkdata['UserCode']}&email_novo={User['Email']}&password_novo={User['Password']}&name={User['Name']}&type={User['Type']}").json()
 
 @app.route("/update_image_account_data/<image_data>", methods = ['POST'])
 def update_image_account_data(image_data):
@@ -180,7 +180,7 @@ def update_image_account_data(image_data):
 		if int(data['updateProjectImage']):
 			restHeader += f"projectcode={data['ProjectCode']}&"
 
-		return requests.post(f"http://{IP}:5050/update_image/{restHeader}updateprojectimage={str(data['updateProjectImage'])}&image={image_data}").json()
+		return requests.post(f"https://{IP}/api/update_image/{restHeader}updateprojectimage={str(data['updateProjectImage'])}&image={image_data}").json()
 
 @app.route("/send_data_for_projects/<json_for_project>", methods=['GET','POST'])
 def send_data_for_projects(json_for_project):
@@ -198,7 +198,7 @@ def send_data_for_projects(json_for_project):
 				userCode = data["Usercode"]
 			except:
 				userCode = "-1"
-			dataToReturn = json.loads(requests.get(f"http://{IP}:5050/projects/?usercode={str(userCode)}&area={str(data['Area'])}&titulo={str(data['Titulo'])}&projectcode={str(data['ProjectCode'])}&publicado={str(data['Publicado'])}").text)
+			dataToReturn = json.loads(requests.get(f"https://{IP}/api/projects/?usercode={str(userCode)}&area={str(data['Area'])}&titulo={str(data['Titulo'])}&projectcode={str(data['ProjectCode'])}&publicado={str(data['Publicado'])}").text)
 			for i in range(len(dataToReturn["Projetos"])):
 				dataToReturn["Projetos"][i]["IsYourCode"] = False
 			return jsonify(dataToReturn)
@@ -213,7 +213,7 @@ def send_data_for_projects(json_for_project):
 				except:
 					userCode = "-1"
 
-			dataToReturn = json.loads(requests.get(f"http://{IP}:5050/projects/?usercode={userCode}&area={str(data['Area'])}&titulo={str(data['Titulo'])}&projectcode={str(data['ProjectCode'])}&publicado={str(data['Publicado'])}").text)
+			dataToReturn = json.loads(requests.get(f"https://{IP}/api/projects/?usercode={userCode}&area={str(data['Area'])}&titulo={str(data['Titulo'])}&projectcode={str(data['ProjectCode'])}&publicado={str(data['Publicado'])}").text)
 			if dataToReturn["Aceito"]:
 				for i in range(len(dataToReturn["Projetos"])):
 					dataToReturn["Projetos"][i]["IsYourCode"] = False
@@ -234,7 +234,7 @@ def send_data_for_projects(json_for_project):
 			createMethod = data["createMethod"]
 
 			if bool(createMethod):
-				urlStr = f"http://{IP}:5050/projects/?createmethod={str(data['createMethod'])}&usercode={sessionishRequestResponse[0]['UserCode']}&titulo={str(data['Titulo'])}&descr={data['Desc']}&publicado={str(data['Publicado'])}"
+				urlStr = f"https://{IP}/api/projects/?createmethod={str(data['createMethod'])}&usercode={sessionishRequestResponse[0]['UserCode']}&titulo={str(data['Titulo'])}&descr={data['Desc']}&publicado={str(data['Publicado'])}"
 
 				areaIndex = 1
 				for area in data["Areas"]:
@@ -249,7 +249,7 @@ def send_data_for_projects(json_for_project):
 				return requests.post(urlStr).json()
 
 			else:
-				urlStr = f"http://{IP}:5050/projects/?createmethod={str(data['createMethod'])}&projectcode={data['ProjectCode']}&titulo={str(data['Titulo'])}&descr={data['Desc']}&publicado={str(data['Publicado'])}"
+				urlStr = f"https://{IP}/api/projects/?createmethod={str(data['createMethod'])}&projectcode={data['ProjectCode']}&titulo={str(data['Titulo'])}&descr={data['Desc']}&publicado={str(data['Publicado'])}"
 
 				areaIndex = 1
 				for area in data["Areas"]:
@@ -271,7 +271,7 @@ def search_for_projects(json_for_search):
 	if request.method == 'GET':
 		data = json.loads(json_for_search)
 		
-		urlStr = f"http://{IP}:5050/searchforprojects/?"
+		urlStr = f"https://{IP}/api/searchforprojects/?"
 		
 		if len(data["Titulo"]) > 0:
 			urlStr += "titulo="+str(data["Titulo"])
@@ -289,12 +289,12 @@ def search_for_projects(json_for_search):
 @app.route("/send_data_for_projectssideinfos/", methods=['GET'])
 def send_data_for_projectssideinfos():
 	if request.method == 'GET':
-		return requests.get(f"http://{IP}:5050/projectssideinfos/").json()
+		return requests.get(f"https://{IP}/api/projectssideinfos/").json()
 
 @app.route("/send_data_for_userssideinfos/", methods=['GET'])
 def send_data_for_userssideinfos():
 	if request.method == 'GET':
-		return requests.get(f"http://{IP}:5050/userssideinfos/").json()
+		return requests.get(f"https://{IP}/api/userssideinfos/").json()
 
 
 if __name__ == '__main__':

@@ -8,7 +8,6 @@
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css">
     
 <link rel="stylesheet" href="{{url_for('static',filename='assets/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/untitled.css') }}">
@@ -25,44 +24,46 @@
 
 <body>
     <main class="d-xl-flex masthead text-center text-white" style="height: 100%;">
-        <div id="ProjectHoleDiv" class="masthead-content" style="background-color: #ffffff;width: 957px;height: 809px;position: absolute;left: 50%;transform: translateX(-50%);margin-top: -92px;">
-            <div class="container" style="width: 100%;">
-                <h1 id="Title" style="margin-bottom: 32px;border-color: rgb(255,255,255);color: rgb(0,0,0);">Novo Projeto</h1>
-                <div class="d-xl-flex justify-content-xl-center" style="height: 210px;">
-                    <div class="d-xl-flex justify-content-xl-center" id="ImageContainer" style="height: 204px;"><a style="width: auto;height: auto;" onclick="ChangeImagePopUp()">
-                            <div class="ImageContainer" style="height: auto;width: auto;"><img id="ItemPreview" class="ProfilePic" style="height: 199px;width: 199px;border-style: none;" src="/static/assets/img/Picture1-512.webp" alt="img">
-                                <div class="d-xl-flex justify-content-xl-center align-items-xl-center overlay" style="height: 100%;width: 100%;"><strong>Trocar</strong></div>
+        <div class="d-flex justify-content-center" style="width: 100%;margin-top: -92px;height: 100%;">
+            <div class="d-flex flex-column align-items-center masthead-content-special">
+                <div class="MyAccountDataContainer">
+                    <h1 id="Title" class="MyAccountHeader" style="/*margin-bottom: 32px;border-color: rgb(255,255,255);color: rgb(0,0,0);*/">Novo Projeto</h1>
+                    <div class="d-flex flex-row justify-content-center" id="MyProjectData">
+                        <div class="d-xl-flex justify-content-xl-center" id="ImageContainer"><a style="width: auto;height: auto;" onclick="ChangeImagePopUp()">
+                                <div class="ImageContainer" style="height: auto;width: auto;"><img id="ItemPreview" class="ProfilePic" style="height: 199px;width: 199px;border-style: none;" src="/static/assets/img/Picture1-512.webp" alt="img">
+                                    <div class="d-flex justify-content-center align-items-center overlay" style="height: 100%;width: 100%;"><strong>Trocar</strong></div>
+                                </div>
+                            </a></div>
+                        <div id="InfoContainer">
+                            <div class="d-flex MyProjectInput">
+                                <p class="text-left d-flex" style="text-align: left;margin-bottom: 4px;color: rgb(0,0,0);width: 71px;">Titulo:</p>
                             </div>
-                        </a></div>
-                    <div id="InfoContainer" style="padding-left: 64px;height: 100%;">
-                        <div class="d-xl-flex justify-content-xl-start align-items-xl-center" style="text-align: center;margin-top: 5px;margin-bottom: 10px;margin-left: 27px;width: 498px;">
-                            <p class="text-left d-xl-flex justify-content-xl-start" style="text-align: left;margin-bottom: 4px;color: rgb(0,0,0);width: 71px;">Titulo:</p><input type="text" id="Titulo" style="width: 400px;margin-left: 23px;">
+                            <div class="d-flex MyProjectInput">
+                                <p class="text-left d-flex justify-content-xl-start" style="margin-bottom: 4px;color: rgb(0,0,0);width: 71px;text-align: left;">Areas:</p><input type="text" id="Area" class="MyProjectInputs" list="Areas" placeholder="Adicione Uma Area"><datalist id="Areas"></datalist>
+                            </div>
+                            <div id="AreasEscolhidas" class="DivDeEscolhas"></div>
+                            <div class="d-flex MyProjectInput">
+                                <p class="text-right d-xl-flex justify-content-xl-end" style="text-align: left;margin-bottom: 4px;color: rgb(0,0,0);width: 71px;">Membros:</p><input type="text" id="Membro" class="MyProjectInputs" list="Membros" placeholder="Adicione Um Membro"><datalist id="Membros"></datalist>
+                            </div>
+                            <div id="MembrosEscolhidos" class="DivDeEscolhas"></div>
                         </div>
-                        <div class="d-xl-flex justify-content-xl-start align-items-xl-center" style="margin-left: 27px;margin-bottom: 5px;width: 498px;">
-                            <p class="text-right d-xl-flex justify-content-xl-start" style="text-align: left;margin-bottom: 4px;color: rgb(0,0,0);width: 71px;">Areas:</p><input type="text" id="Area" style="width: 400px;margin-left: 23px;" list="Areas" placeholder="Adicione Uma Area"><datalist id="Areas"></datalist>
-                        </div>
-                        <div id="AreasEscolhidas" class="DivDeEscolhas"></div>
-                        <div class="d-xl-flex justify-content-xl-start align-items-xl-center" style="margin-left: 27px;margin-top: 5px;margin-bottom: 5px;width: 498px;">
-                            <p class="text-right d-xl-flex justify-content-xl-end" style="text-align: left;margin-bottom: 4px;color: rgb(0,0,0);width: 71px;">Membros:</p><input type="text" id="Membro" style="width: 400px;margin-left: 23px;" list="Membros" placeholder="Adicione Um Membro"><datalist id="Membros"></datalist>
-                        </div>
-                        <div id="MembrosEscolhidos" class="DivDeEscolhas"></div>
                     </div>
                 </div>
+                <div class="d-flex justify-content-center" style="width: 100%;height: 100%;">
+                    <div id="summernote" style="height: 100%;width: 90%;"></div>
+                </div>
+                <div style="width: 100%;"><button class="btn btn-primary" type="button" style="background-color: rgb(52,58,64);margin-top: 10px;margin-bottom: 22px;width: 97px;" onclick="saveCode()">Salvar</button><button class="btn btn-primary" id="PublishButton" type="button" onclick="publishCode()">Publicar</button></div>
             </div>
-            <div class="d-xl-flex justify-content-xl-center align-items-xl-center" style="width: 100%;height: auto;">
-                <div id="summernote"></div>
-            </div>
-            <div style="width: 100%;"><button class="btn btn-primary" type="button" style="background-color: rgb(52,58,64);margin-top: 10px;margin-bottom: 22px;width: 97px;" onclick="saveCode()">Salvar</button><button class="btn btn-primary" id="PublishButton" type="button" style="background-color: rgb(52,58,64);margin-top: 10px;margin-bottom: 22px;margin-left: 274px;width: 97px;" onclick="publishCode()">Publicar</button></div>
         </div>
         <div class="bg-circle-1 bg-circle"></div>
         <div class="bg-circle-2 bg-circle"></div>
         <div class="bg-circle-3 bg-circle"></div>
         <div class="bg-circle-4 bg-circle"></div>
     </main>
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark navbar-custom">
+    <nav class="navbar navbar-dark navbar-expand-xl fixed-top bg-dark navbar-custom">
         <div class="container"><a class="navbar-brand" href="/">Profinder</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive"><span class="navbar-toggler-icon"></span></button>
-            <div class="d-xl-flex align-items-xl-center" style="height: 35px;display: block;position: absolute;left: 50%;transform: translateX(-50%);"><input type="text" id="SearchBar" style="width: 503px;margin-right: 4px;border-radius: 8px;border-color: rgba(0,0,0,0);" placeholder="Pesquisar Projeto Por Titulo"><img src="/static/assets/img/search_icon.png" style="height: 30px;width: 30px;" onclick="SearchForProjects()"></div>
             <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div class="searchbardiv"><input type="text" id="SearchBar" placeholder="Pesquisar Projeto Por Titulo"><img src="/static/assets/img/search_icon.png" style="height: 30px;width: 30px;" onclick="SearchForProjects ()"></div>
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="/signup/"><strong>Criar Conta</strong><br></a></li>
                     <li class="nav-item"><a class="nav-link" href="/login/"><strong>LOGAR</strong><br></a></li>
@@ -78,10 +79,9 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/jquery.min.js"></script>
     
     
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+    
     
     
     
