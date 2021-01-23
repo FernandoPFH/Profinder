@@ -1,17 +1,12 @@
+#ignore folders
+__pycache__/
+.ipynb_checkpoints/
+Backup/
 Testes/
 
-Backup/
-
-__pycache__/
-
-.ipynb_checkpoints/
-
+#ignore files
 CorrigirArquivos.py
-
 index.html
-
 index1.html
-
 Profinder.bsdesign
-
 ProfinderFilesScript.bat

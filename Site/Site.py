@@ -8,11 +8,13 @@ from pymongo import MongoClient
 from MongoDBFuncs import  newSessionishStart, newSessionishRequest, newSessionishUpdate, sessionishFileExist
 
 IP = os.environ.get("IP")
-MongoURI = f"mongodb://{os.environ['MONGODB_USERNAME']}:{os.environ['MONGODB_PASSWORD']}@{os.environ['MONGODB_HOSTNAME']}:27017/{os.environ['MONGODB_DATABASE']}"
+MongoURI = f"mongodb://{os.environ['MONGODB_USERNAME']}:{os.environ['MONGODB_PASSWORD']}@{os.environ['MONGODB_HOSTNAME']}:27017"
+
+mongoClient = MongoClient(MongoURI)
 
 while True:
 	try:
-		MongoClient(MongoURI)
+		mongoClient.list_database_names()
 		print("Connected to MongoDB!!!")
 		break
 	except:
@@ -59,8 +61,6 @@ def send_data_for_login(json_for_login):
 		if response["Aceito"]:
 			clientIPAdress = request.remote_addr
 
-			mongoClient = MongoClient(MongoURI)
-
 			if User["sessionishClientId"] and sessionishFileExist(mongoClient,User["sessionishClientId"]):
 				sessionishClientId = User["sessionishClientId"]
 
@@ -85,15 +85,13 @@ def send_data_for_login(json_for_login):
 		if response["Aceito"]:
 			clientIPAdress = request.remote_addr
 
-			mongoClient = MongoClient(MongoURI)
-
 			if User["sessionishClientId"] and sessionishFileExist(mongoClient,User["sessionishClientId"]):
 				sessionishClientId = User["sessionishClientId"]
 
 			else:
-				sessionishClientId = newSessionishStart(MongoClient,clientIPAdress)
+				sessionishClientId = newSessionishStart(mongoClient,clientIPAdress)
 
-			newSessionishUpdate(MongoClient,sessionishClientId,clientIPAdress,{"Email":User["Email"],"Password":User["Password"],"UserCode":response["Code"]})
+			newSessionishUpdate(mongoClient,sessionishClientId,clientIPAdress,{"Email":User["Email"],"Password":User["Password"],"UserCode":response["Code"]})
 
 			response["sessionishClientId"] = sessionishClientId
 
@@ -105,8 +103,6 @@ def send_data_for_login(json_for_login):
 @app.route("/try_login_by_session_data/<sessionishClientId>", methods=['GET'])
 def try_login_by_session_data(sessionishClientId):
 	if request.method == 'GET':
-		mongoClient = MongoClient(MongoURI)
-		
 		if sessionishClientId and sessionishFileExist(mongoClient,sessionishClientId):
 			clientIPAdress = request.remote_addr
 			sessionishRequestResponse = newSessionishRequest(mongoClient,sessionishClientId,clientIPAdress,["Email","Password"])
@@ -114,7 +110,7 @@ def try_login_by_session_data(sessionishClientId):
 			if type(sessionishRequestResponse) == type(str()):
 				return jsonify({"Aceito":False})
 
-			elif type(sessionishRequestResponse) == type(list()):
+			elif type(sessionishRequestResponse) == type(dict()):
 				restHeader = "?"
 				for key,value in sessionishRequestResponse.items():
 					restHeader += key.lower() + "=" + value + "&"
@@ -135,7 +131,6 @@ def send_data_for_account(json_for_account):
 	if request.method == 'GET':
 		Data = json.loads(json_for_account)
 		clientIPAdress = request.remote_addr
-		mongoClient = MongoClient(MongoURI)
 		try:
 			usercode = Data["UserCode"]
 		except:
@@ -162,16 +157,17 @@ def send_data_for_account(json_for_account):
 	if request.method == 'POST':
 		User = json.loads(json_for_account)
 		clientIPAdress = request.remote_addr
-		mongoClient = MongoClient(MongoURI)
 		checkdata = newSessionishRequest(mongoClient,User["sessionishClientId"],clientIPAdress,["Email","Password","UserCode"])
-		return  requests.post(f"https://{IP}/api/account_data/?email_antigo={checkdata['Email']}&password_antigo={checkdata['Password']}&usercode={checkdata['UserCode']}&email_novo={User['Email']}&password_novo={User['Password']}&name={User['Name']}&type={User['Type']}").json()
+		response = json.loads(requests.post(f"https://{IP}/api/account_data/?email_antigo={checkdata['Email']}&password_antigo={checkdata['Password']}&usercode={checkdata['UserCode']}&email_novo={User['Email']}&password_novo={User['Password']}&name={User['Name']}&type={User['Type']}").text)
+		if response["Aceito"]:
+			newSessionishUpdate(mongoClient,User["sessionishClientId"],clientIPAdress,{"Email":User["Email"],"Password":User["Password"]})
+		return  jsonify(response)
 
 @app.route("/update_image_account_data/<image_data>", methods = ['POST'])
 def update_image_account_data(image_data):
 	if request.method == 'POST':
 		data = json.loads(image_data)
 		clientIPAdress = request.remote_addr
-		mongoClient = MongoClient(MongoURI)
 		sessionishRequestResponse = newSessionishRequest(mongoClient,data["sessionishClientId"],clientIPAdress,["Email","Password","UserCode"])
 		restHeader = "?"
 		for key,value in sessionishRequestResponse.items():
@@ -186,7 +182,6 @@ def update_image_account_data(image_data):
 def send_data_for_projects(json_for_project):
 	if request.method == 'GET':
 		data = json.loads(json_for_project)
-		mongoClient = MongoClient(MongoURI)
 
 		sessionishClientId = ""
 		if "sessionishClientId" in data:
@@ -225,7 +220,6 @@ def send_data_for_projects(json_for_project):
 
 	if request.method == 'POST':
 		data = json.loads(json_for_project)
-		mongoClient = MongoClient(MongoURI)
 		
 		if data["sessionishClientId"] and sessionishFileExist(mongoClient,data["sessionishClientId"]):
 			clientIPAdress = request.remote_addr

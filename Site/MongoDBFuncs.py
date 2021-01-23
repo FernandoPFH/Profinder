@@ -61,9 +61,7 @@ def clientAdressMatchSessionishAdress(mongoClient,clientSessionId,clientAdress):
     return mongoClient["Data"]["clientsInfo"].find_one({"_id":clientSessionId})["clientAdress"] == clientAdress
 
 def updateRequestInfo(mongoClient,clientSessionId):
-    dataFromDB = mongoClient["Data"]["clientsInfo"].find_one({"_id":clientSessionId})
-    dataUpdated = dataFromDB.copy()["lastRequested"] = asctime(localtime(time()))
-    mongoClient["Data"]["clientsInfo"].update_one(dataFromDB,{"$set":dataUpdated})
+    mongoClient["Data"]["clientsInfo"].update_one({"_id":clientSessionId},{"$set":{"lastRequested":asctime(localtime(time()))}})
 
     updateMasterFile(mongoClient,clientSessionId=clientSessionId,lastRequested=asctime(localtime(time())),lastUpdated=False)
 
@@ -84,9 +82,7 @@ def requestSessionishData(mongoClient,clientSessionId,keyNames):
     return valuesOfTheKeys
 
 def updateUpdateInfo(mongoClient,clientSessionId):
-    dataFromDB = mongoClient["Data"]["clientsInfo"].find_one({"_id":clientSessionId})
-    dataUpdated = dataFromDB.copy()["lastUpdated"] = asctime(localtime(time()))
-    mongoClient["Data"]["clientsInfo"].update_one(dataFromDB,{"$set":dataUpdated})
+    mongoClient["Data"]["clientsInfo"].update_one({"_id":clientSessionId},{"$set":{"lastUpdated":asctime(localtime(time()))}})
 
     updateMasterFile(mongoClient,clientSessionId=clientSessionId,lastRequested=False,lastUpdated=asctime(localtime(time())))
 
@@ -94,12 +90,12 @@ def updateSessionishData(mongoClient,clientSessionId,valuesToUpdate):
     updateUpdateInfo(mongoClient,clientSessionId)
 
     dataFromDB = mongoClient["Data"]["clientsInfo"].find_one({"_id":clientSessionId})
-    dataUpdated = dataFromDB.copy()
+    dataUpdated = dataFromDB["data"].copy()
 
     for keyToUpdate,valueToUpdate in valuesToUpdate.items():
-        dataUpdated["data"][keyToUpdate] = valueToUpdate
+        dataUpdated[keyToUpdate] = valueToUpdate
 
-    mongoClient["Data"]["clientsInfo"].update_one(dataFromDB,{"$set":dataUpdated})
+    mongoClient["Data"]["clientsInfo"].update_one({"_id":clientSessionId},{"$set":{"data":dataUpdated}})
 
 def newSessionishStart(mongoClient,clientAdress):
     clientSessionId = createFileThatNotExist(mongoClient)

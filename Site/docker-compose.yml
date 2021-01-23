@@ -5,7 +5,6 @@ services:
     build: ./
     environment:
       IP: localhost
-      MONGODB_DATABASE: sesiondb
       MONGODB_USERNAME: root
       MONGODB_PASSWORD: example
       MONGODB_HOSTNAME: mongodb
@@ -17,7 +16,6 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: sesiondb
       MONGODB_DATA_DIR: /data/db
       MONDODB_LOG_DIR: /dev/null
     volumes:
