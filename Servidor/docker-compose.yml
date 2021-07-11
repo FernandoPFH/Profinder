@@ -107,6 +107,16 @@ services:
       MYSQL_DATABASE_NAME: Data
     tty: true
 
+  getnumberofusers:
+    image: fernandopfh/getnumberofusers:1.0.0
+    environment:
+      RABBITMQ_HOST_NAME: rabbitmq-server
+      MYSQL_HOST_NAME: database
+      MYSQL_USER: root
+      MYSQL_PASSWORD: example
+      MYSQL_DATABASE_NAME: Data
+    tty: true
+
   searchforprojects:
     image: fernandopfh/searchforprojects:1.0.0
     environment:
