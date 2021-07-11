@@ -3,7 +3,7 @@ import requests
 import os
 from time import sleep
 from flask import Flask, request, render_template, session, jsonify
-#from flask_talisman import Talisman
+from flask_talisman import Talisman
 from pymongo import MongoClient
 from MongoDBFuncs import  newSessionishStart, newSessionishRequest, newSessionishUpdate, sessionishFileExist
 from sendgrid import SendGridAPIClient
