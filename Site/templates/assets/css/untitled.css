@@ -1,0 +1,641 @@
+main.masthead {
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(7rem + 72px);
+  padding-bottom: 7rem;
+  background: linear-gradient(0deg,#ff6a00,#ee0979);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+main.masthead .bg-circle {
+  z-index: 0;
+  position: absolute;
+  border-radius: 100%;
+  background: linear-gradient(0deg,#ee0979,#ff6a00);
+}
+
+main.masthead .bg-circle-1 {
+  height: 90rem;
+  width: 90rem;
+  bottom: -55rem;
+  left: -55rem;
+}
+
+main.masthead .bg-circle-2 {
+  height: 50rem;
+  width: 50rem;
+  top: -25rem;
+  right: -25rem;
+}
+
+main.masthead .bg-circle-3 {
+  height: 20rem;
+  width: 20rem;
+  bottom: -10rem;
+  right: 5%;
+}
+
+main.masthead .bg-circle-4 {
+  height: 30rem;
+  width: 30rem;
+  top: -5rem;
+  right: 35%;
+}
+
+main.masthead .masthead-content {
+  z-index: 1;
+  position: relative;
+  overflow-y: auto;
+  height: Calc(100% + 112px);
+}
+
+#ProjectImageContainer {
+  width: 232px;
+  height: inherit;
+  display: block;
+}
+
+#ImageContainer {
+  width: 232px;
+  height: inherit;
+  display: block;
+}
+
+#InfoContainer {
+  height: 100%;
+  /*width: 100%;*/
+  padding-top: 12px;
+  padding-left: 48px;
+  padding-right: 32px;
+  padding-bottom: 12px;
+}
+
+.InfoContainer {
+  height: 100%;
+  width: 100%;
+  padding-top: 12px;
+  padding-left: 48px;
+  padding-right: 32px;
+  padding-bottom: 12px;
+}
+
+div.ImageContainer {
+  position: relative;
+  display: inline-block;
+}
+
+img.ProfilePic {
+  display: block;
+}
+
+div.overlay {
+  position: absolute;
+  opacity: 0;
+  background-color: #ee0979d9;
+  height: 100%;
+  width: 100%;
+  top: 0;
+}
+
+div.ImageContainer:hover div.overlay {
+  opacity: 1;
+  cursor: pointer;
+}
+
+#SideBar {
+  width: 20%;
+  height: 100%;
+}
+
+#ListViewer {
+  float: right;
+  width: 80%;
+  height: 100%;
+}
+
+.sidebar-section {
+  background-color: #14d;
+}
+
+.sidebar-item {
+  width: 100%;
+  border-right: 1px solid rgba(17,68,221,0.59);
+  border-bottom: 1px solid rgba(17,68,221,0.59);
+  border-left: 1px solid rgba(17,68,221,0.59);
+}
+
+strong.sidebar-section {
+}
+
+.sidebar-section-text {
+  font-size: small;
+  margin-left: 15px;
+}
+
+.sidebar-item-text {
+  color: #000;
+}
+
+img {
+  object-fit: scale-down;
+}
+
+.DivDeEscolhas {
+  width: 515px;
+  height: 44px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.AreaEscolhida div {
+  background-color: #bd0760a9;
+  height: 20px;
+  border-radius: 8px;
+  padding-left: 5px;
+  width: fit-content;
+  margin-bottom: 1px;
+  margin-right: 2px;
+  display: table;
+}
+
+.AreaEscolhida {
+  background-color: #bd0760a9;
+  height: 20px;
+  border-radius: 8px;
+  padding-left: 5px;
+  width: fit-content;
+  margin-bottom: 1px;
+  margin-right: 2px;
+  display: table;
+}
+
+.AreaEscolhida p {
+  height: 10px;
+  display: table-cell;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.MembroEscolhido p {
+  height: 100%;
+  display: table-cell;
+  margin: 0px;
+}
+
+.MembroEscolhido {
+  height: 20px;
+  border-radius: 8px;
+  padding-left: 5px;
+  width: fit-content;
+  margin-bottom: 1px;
+  margin-right: 2px;
+  display: table;
+  font-size: 16px;
+  font-weight: normal;
+  padding-right: 5px;
+}
+
+.AreaEscolhida a {
+  display: table-cell;
+  margin-left: 3px;
+  color: #fffffff3;
+  width: 16px;
+  margin-right: 3px;
+  height: 100%;
+  align-items: center;
+  padding-left: 2px;
+  border-left: 2px solid #bd076050;
+}
+
+.MembroEscolhido a {
+  display: table-cell;
+  margin-left: 3px;
+  color: #fffffff3;
+  width: 16px;
+  margin-right: 3px;
+  height: 100%;
+  align-items: center;
+  padding-left: 2px;
+  border-left: 2px solid #bd076050;
+}
+
+.aluno {
+  background-color: #bd0707aa;
+}
+
+.prof {
+  background-color: #270bcfc5;
+}
+
+.modal {
+  color: black;
+  top: 100px;
+}
+
+.customizedmodal {
+  display: none;
+  position: fixed;
+  z-index: 1040;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0,0.5);
+}
+
+.customizedmodal-content {
+  display: table;
+  background-color: #fefefe;
+  margin: 75px auto;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 1px solid #888;
+  width: 975px;
+}
+
+@media (max-width: 590px) {
+  .div-column {
+    display: flex;
+    flex-direction: column!important;
+  }
+}
+
+nav {
+  z-index: 0;
+}
+
+.fullscreen {
+  margin-top: 66px;
+}
+
+.PerfilPic {
+  border-radius: 50%;
+  background-color: #e17272;
+}
+
+.Amostras {
+  margin-bottom: 5px;
+  height: 46px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  padding-top: 4px;
+}
+
+.navbar {
+  height: 67px;
+}
+
+.selfuser {
+  background-color: #ff6a00d7;
+  padding-right: 5px;
+}
+
+.ProjectItem {
+  width: 100%;
+  margin-bottom: 2px;
+  color: black;
+  background: #f7ccb4;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.ProjectItem-div {
+  width: 100%;
+  min-height: 60px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 2px;
+}
+
+p.ProjectItem-div {
+  margin-left: 11px;
+  font-size: 18px;
+  margin-bottom: auto;
+}
+
+@media (min-width:1200px) {
+  .searchbardiv {
+    height: 35px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width:1199px) {
+  #navbarResponsive {
+    margin-top: 11px;
+    padding-top: 7px;
+    padding-left: 11px;
+    padding-right: 11px;
+    background-color: #23272c;
+  }
+}
+
+#SearchBar {
+  width: 557px;
+  margin-right: 4px;
+  border-radius: 8px;
+  border-color: rgba(0,0,0,0);
+}
+
+@media (max-width: 1199px) {
+  #SearchBar {
+    width: Calc(100% - 34px);
+  }
+}
+
+.LoginInput {
+  width: 100%;
+}
+
+.LoginInputContainer {
+  width: 460px;
+}
+
+@media (max-width: 460px) {
+  .LoginInputContainer {
+    width: 100%;
+  }
+}
+
+.masthead-content-special {
+  background-color: #ffffff;
+  height: Calc(100% + 150px);
+  width: 45%;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  z-index: 1;
+  overflow-y: auto;
+}
+
+@media (max-width: 1346px) {
+  .masthead-content-special {
+    width: Calc(100% - 30px);
+  }
+}
+
+@media (max-width: 957px) {
+  #EditButton {
+    width: 100%;
+  }
+}
+
+.MyAccountHeader {
+  margin-bottom: 32px;
+  border-color: rgb(255,255,255);
+  color: rgb(0,0,0);
+  width: 100%;
+}
+
+.MyAccountDataContainer {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+#MyAccountData {
+  width: 100%;
+}
+
+@media (max-width: 724px) {
+  #MyAccountData {
+    flex-direction: column!important;
+  }
+}
+
+.MyAccountInput {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 724px) {
+  .MyAccountInput {
+    justify-content: center!important;
+  }
+}
+
+@media (max-width: 724px) {
+  #InfoContainer {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media (max-width: 724px) {
+  .InfoContainer {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media (max-width: 370px) {
+  .MyAccountInput {
+    flex-direction: column;
+    justify-content: center!important;
+  }
+}
+
+@media (max-width: 370px) {
+  .MyProjectInput {
+    flex-direction: column;
+    justify-content: center!important;
+  }
+}
+
+.MyAccountInputs {
+  width: 232px;
+  margin-left: 22px;
+}
+
+@media (max-width: 370px) {
+  .MyAccountInputs {
+    margin-left: 0px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 350px) {
+  .MyAccountHeader {
+    width: 256px;
+  }
+}
+
+@media (max-width: 870px) {
+  #MyProjectData {
+    flex-direction: column!important;
+    justify-content: center!important;
+  }
+}
+
+.ProjectImageContainer {
+  width: 233px;
+}
+
+@media (max-width: 902px) {
+  .ProjectImageContainer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 902px) {
+  #ImageContainer {
+    width: 100%;
+  }
+}
+
+.MyProjectInput {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 902px) {
+  .MyProjectInput {
+    justify-content: center!important;
+  }
+}
+
+.MyProjectInputs {
+  width: 400px;
+  margin-left: 22px;
+}
+
+@media (max-width: 370px) {
+  .MyProjectInputs {
+    margin-left: 0px;
+    width: 100%;
+  }
+}
+
+#PublishButton {
+  background-color: rgb(52,58,64);
+  margin-top: 10px;
+  margin-bottom: 22px;
+  margin-left: 274px;
+  width: 97px;
+}
+
+@media (max-width: 540px) {
+  #PublishButton {
+    margin-left: 37px;
+  }
+}
+
+@media (max-width: 630px) {
+  .DivDeEscolhas {
+    width: 100%;
+  }
+}
+
+@media (max-width: 804px) {
+  .InfosDiv {
+    flex-direction: column;
+  }
+}
+
+#Titulo {
+}
+
+#TituloOfProject {
+  margin-top: 8px;
+  width: 100%;
+}
+
+@media (max-width: 622px) {
+  #TituloOfProject {
+    flex-direction: column;
+  }
+}
+
+.sidebar-item:hover {
+  text-decoration: none;
+}
+
+.sidebar-item input {
+  margin-left: 11px;
+  margin-right: 11px;
+  pointer-events: none;
+}
+
+@media (max-width: 1012px) {
+  .projects-customizedmodal-content {
+    width: Calc(100% - 30px);
+  }
+}
+
+#autor-div {
+  width: 100%;
+}
+
+@media (max-width: 620px) {
+  .ProjectItem {
+    flex-direction: column!important;
+  }
+}
+
+.ProjectItem.special {
+  width: 180px;
+  height: 180px;
+  background: #ffffff;
+}
+
+@media (max-width: 1822px) and (min-width: 1347px) {
+  .masthead-content-special {
+    width: 60%;
+  }
+}
+
+.Papper {
+  cursor: pointer;
+  margin-bottom: 0px;
+  border: 1px solid rgb(0,0,0);
+  border-bottom: none;
+  border-top-left-radius: 19px;
+  border-top-right-radius: 19px;
+  color: white;
+  height: 26px;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+.SearchItem:hover {
+  cursor: pointer;
+}
+
+#DeleteButton {
+  background-color: red!important;
+}
+
+#DeleteButton:hover {
+  background-color: rgb(133,0,0)!important;
+}
+
+#DeleteButton.disabled:hover {
+  background-color: red!important;
+}
+
+.ProjectButton {
+  height: 28px;
+}
+

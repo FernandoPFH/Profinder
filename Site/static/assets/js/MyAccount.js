@@ -1,6 +1,12 @@
+var ProjetoSelecionados = [];
+
 $(document).ready(() => {
     window.onclick = function(event) {
       var modal = document.getElementById("myModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+      var modal = document.getElementById("myCreateProjectModal");
       if (event.target == modal) {
         modal.style.display = "none";
       }
@@ -39,18 +45,21 @@ $(document).ready(() => {
 
                         let cell1 = row.insertCell(0);
                         let cell2 = row.insertCell(1);
+                        let cell3 = row.insertCell(2);
+                        
+                        cell1.innerHTML = `<input type='checkbox' onclick="SelectProject(this)"/>`;
 
-                        cell1.innerHTML = `<a href="/project/${dataForRow.ProjectCode}">${dataForRow.Titulo}</a>`;
+                        cell2.innerHTML = `<a href="/project/${dataForRow.ProjectCode}">${dataForRow.Titulo}</a>`;
                         if (dataForRow.Publicado) {
-                            cell2.innerHTML = `<input type='checkbox' checked/>`
+                            cell3.innerHTML = `<input type='checkbox' checked/>`
                         } else {
-                            cell2.innerHTML = `<input type='checkbox' />`
+                            cell3.innerHTML = `<input type='checkbox' />`
                         }
                     }
 
                     document.getElementById("semNenhumProjeto").remove();
-
-                    document.getElementById("MyProjectsContainer").innerHTML += `<div class="d-xl-flex flex-row justify-content-xl-center align-items-xl-center"><p style="color: rgb(0,0,0);margin-bottom: 0px;">Criar Novo Projeto</p><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center" type="button" style="height: 24px;width: 24px;margin-left: 7px;" onclick="window.location.href = '/create_project/new'">+</button></div>`
+                } else {
+                    document.getElementById("SelectAll").disabled = true;
                 }
             });
         } else {
@@ -79,7 +88,7 @@ $(document).ready(() => {
             let tableCellPublicado = document.getElementById("Publicado");
             tableCellPublicado.parentNode.removeChild(tableCellPublicado);
             
-            document.getElementById("noProjectsParagraph").innerHTML = "Ainda não há nenhum projecto";
+            document.getElementById("noProjectsParagraph").innerHTML = "Ainda não há nenhum projeto";
             let noProjectsLink = document.getElementById("noProjectsLink");
             noProjectsLink.parentNode.removeChild(noProjectsLink);
             
@@ -99,12 +108,8 @@ $(document).ready(() => {
                         let row = table.insertRow(-1);
 
                         let cell1 = row.insertCell(0);
-                        let cell2 = row.insertCell(1);
-                        let cell3 = row.insertCell(2);
 
-                        cell1.innerHTML = dataForRow.Titulo;
-                        cell2.innerHTML = dataForRow.Area;
-                        cell3.innerHTML = `<a href="/project/${dataForRow.ProjectCode}">Click Aqui</a>`
+                        cell1.innerHTML = `<a href="/project/${dataForRow.ProjectCode}">${dataForRow.Titulo}</a>`;
                     }
 
                     document.getElementById("semNenhumProjeto").remove();
@@ -133,20 +138,60 @@ function ChangeAccountData() {
   });
 }
 
+function selectAllProjects() {
+    let table = document.getElementById("myProjectsTable");
+    
+    if (document.getElementById("SelectAll").checked) {
+        if (table.rows.length > 1) {
+            for(let i=1;i<table.rows.length;i++) {
+                if (!table.rows[i].cells[0].getElementsByTagName("input")[0].checked) {
+                    table.rows[i].cells[0].getElementsByTagName("input")[0].checked = true;
+                    ProjetoSelecionados.push(table.rows[i].cells[1].getElementsByTagName("a")[0].getAttribute("href").replace("/project/",""));
+                }
+            }
+        }
+    } else {
+        if (table.rows.length > 1) {
+            for(let i=1;i<table.rows.length;i++) {
+                if (table.rows[i].cells[0].getElementsByTagName("input")[0].checked) {
+                    table.rows[i].cells[0].getElementsByTagName("input")[0].checked = false;
+                    let projectCode = table.rows[i].cells[1].getElementsByTagName("a")[0].getAttribute("href").replace("/project/","");
+                    let index = ProjetoSelecionados.indexOf(projectCode);
+                    if (index > -1) {
+                        ProjetoSelecionados.splice(index,1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+function SelectProject(thisElement) {
+    if (thisElement.checked) {
+        let projectCode = thisElement.parentElement.parentElement.getElementsByTagName("a")[0].getAttribute("href").replace("/project/","");
+        ProjetoSelecionados.push(projectCode);
+    } else {
+        let projectCode = thisElement.parentElement.parentElement.getElementsByTagName("a")[0].getAttribute("href").replace("/project/","");
+        let index = ProjetoSelecionados.indexOf(projectCode);
+        if (index > -1) {
+            ProjetoSelecionados.splice(index,1);
+        }
+    }
+}
+
 function ChangeImagePopUp() {
   var modal = document.getElementById("myModal");
-  modal.style.display = "block";
+  modal.style.display = "flex";
 }
 
 function ChangeImageData() {
-    const PORT = 5100;
     var file = document.getElementById('FileToGet').files[0];
     var fileReader = new FileReader();
     fileReader.readAsDataURL(file)
     fileReader.onload = () => {
         var arrayBuffer = fileReader.result;
 
-        var socket = io.connect(`http://${IP}:${PORT}`);
+        var socket = io.connect(`https://${IP}`);
 
         socket.on('Response', (data)=>{
           data.sessionishClientId = sessionStorage.getItem("sessionishClientId");
@@ -183,4 +228,30 @@ function ChangeImageData() {
 
 function CloseImagePopUp() {
     document.getElementById("myModal").style.display = "none";
+}
+
+function CreateProjectPopUp() {
+  var modal = document.getElementById("myCreateProjectModal");
+  modal.style.display = "flex";
+}
+
+function CloseCreateProjectPopUp() {
+    document.getElementById("myCreateProjectModal").style.display = "none";
+}
+
+function ChangeDiv(Element) {
+    let parentDiv = Element.parentElement;
+    for(let i=0;i<parentDiv.children.length;i++) {
+        CheckDivOfList(parentDiv.children[i]);
+    }
+    
+    $(Element).addClass("Selected");
+    $("#Div"+Element.innerText.replace(/ /g,'')).addClass("Selected");
+}
+
+function CheckDivOfList(item) {
+    if($(item).attr('class').includes("Selected")) {
+        $(item).removeClass("Selected");
+        $("#Div"+item.innerText.replace(/ /g,'')).removeClass("Selected");
+    }
 }

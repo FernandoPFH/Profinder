@@ -1,5 +1,12 @@
-function TrySignup() {
-  User = {"Email":document.getElementById("Email").value,"Password":document.getElementById("Password").value,"Name":document.getElementById("Name").value,"Type":document.getElementById("Type").value,"sessionishClientId":sessionStorage.getItem("sessionishClientId")};
+function sha512(str) {
+  str += "i5kmHo2t";
+  return crypto.subtle.digest("SHA-512", new TextEncoder("utf-8").encode(str)).then(buf => {
+    return Array.prototype.map.call(new Uint8Array(buf), x=>(('00'+x.toString(16)).slice(-2))).join('');
+  });
+}
+
+async function TrySignup() {
+  User = {"Email":document.getElementById("Email").value,"Password":await sha512(document.getElementById("Password").value),"Name":document.getElementById("Name").value,"Type":document.getElementById("Type").value,"sessionishClientId":sessionStorage.getItem("sessionishClientId")};
 
   fetch('/send_data_for_login/'+JSON.stringify(User), {
     method: 'POST',

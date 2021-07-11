@@ -2,7 +2,7 @@ from time import asctime,localtime,time
 from random import randint
 
 baseCaractheres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
-clientSessionIdLength = 20
+clientSessionIdLength = 30
 
 def createFileThatNotExist(mongoClient):
     creatingNameThatNotExist = True

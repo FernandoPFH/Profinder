@@ -9,6 +9,11 @@ async function IsLoged(){
   });
 }
 
+async function Logout() {
+    sessionStorage.removeItem('sessionishClientId');
+    window.location.reload(false);
+}
+
 async function ChangeDocumentIfLoged(){
   if (await IsLoged()){
 
@@ -24,7 +29,7 @@ async function ChangeDocumentIfLoged(){
         if (data.Image != null) {
           imgUrl = data.Image
         }
-        document.getElementsByClassName("nav navbar-nav ml-auto")[0].innerHTML = `<li class="nav-item" style="height: 67px;"><a class="nav-link" href="/account_data/${data.UserCode}" style="height: 67px;width: 67px;"><div class="d-xl-flex flex-row align-items-xl-center" style="height: 100%;width: 100%;"><img class="PerfilPic" src="${imgUrl}" style="height: 100%;width: 100%;" /></div></a></li>`;
+        document.getElementsByTagName("nav")[0].getElementsByTagName("ul")[0].innerHTML = `<li class="nav-item" style="height: 67px;"><div class="dropdown show" style="width: 67px;"><a id="dropdownMenuLink" class="nav-link" href style="width: 67px;height: 67px;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div class="d-xl-flex flex-row align-items-xl-center" style="width: 100%;height: 100%;"><img class="PerfilPic" style="width: 100%;height: 100%;" src="${imgUrl}" /></div></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left: -85px;"><a class="dropdown-item" href="/account_data/${data.UserCode}">Minha conta</a><a class="dropdown-item" onclick="Logout()">Sair</a></div></div></li>`;
       }else{
         alert(data.Porque)
       }

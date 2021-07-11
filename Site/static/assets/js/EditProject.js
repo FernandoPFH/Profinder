@@ -168,7 +168,7 @@ $(document).ready(async function() { $('#summernote').summernote({
                 }
               }
 
-            document.getElementById("PublishButton").innerText = (publicado) ? "Ocultar" : "Publicar";
+            document.getElementById("PublishButton").innerText = (publicado) ? "Privar" : "Publicar";
         } else {
             document.getElementById("ProjectHoleDiv").innerHTML = "<strong style=\"color: rgb(0,0,0);font-size: 56px;\">Para editar esse projeto entre com uma conta que esteja vinculada nesse projeto!!!</strong>";
         }
@@ -319,7 +319,7 @@ function saveCode() {
 function publishCode() {
     var markupStr = $('#summernote').summernote('code');
 
-    markupStr = markupStr.replaceAll('"',"'").replaceAll("/"," !@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@! ");
+    markupStr = markupStr.replaceAll('"',"'").replaceAll("/"," !@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@! ").replaceAll("#"," !@!@!@!@!@!@!@!@!@!@!@!@!@!@! ");
     
     var tituloStr = document.getElementById("Titulo").value;
     
@@ -342,9 +342,9 @@ function publishCode() {
             }).then((data) => {
               // Work with JSON data here
               if (data.Aceito) {
+                alert((publicado)?"Projeto ocultado!!!":"Projeto publicado!!!");
                 publicado = (publicado)?0:1;
-                document.getElementById("PublishButton").innerText = (publicado) ? "Ocultar" : "Publicar";
-                alert("Projeto publicado!!!");
+                document.getElementById("PublishButton").innerText = (publicado) ? "Privar" : "Publicar";
               }else {
                 alert("Algo Deu Errado");
               }
@@ -357,7 +357,7 @@ function publishCode() {
             alert("Escreva algo");
         }
     }else {
-        if (tituloStr.length > 0 && areaStr.length > 0 && markupStr.length > 0) {
+        if (tituloStr.length > 0 && areasList.length > 0 && markupStr.length > 0) {
             Data = {"createMethod":1,"sessionishClientId":sessionStorage.getItem("sessionishClientId"),"Titulo":tituloStr,"Areas":areasList,"Desc":encodeURIComponent(markupStr),"Publicado":(publicado)?0:1}
             
             fetch('/send_data_for_projects/'+JSON.stringify(Data), {
@@ -369,7 +369,7 @@ function publishCode() {
                 if (data.Aceito) {
                   ProjectCode = data.ProjectCode;
                   publicado = (publicado)?0:1;
-                  document.getElementById("PublishButton").innerText = (publicado) ? "Ocultar" : "Publicar";
+                  document.getElementById("PublishButton").innerText = (publicado) ? "Privar" : "Publicar";
                   alert("Projeto publicado!!!");
                 } else {
                   alert("Algo Deu Errado");
@@ -383,6 +383,10 @@ function publishCode() {
             alert("Escreva algo");
         }
   }
+    
+  if (publicado) {
+      window.location.href = "/account_data/" + sessionStorage.getItem("sessionishClientId");
+  }
 }
 
 function ChangeImagePopUp() {
@@ -392,14 +396,13 @@ function ChangeImagePopUp() {
 
 function ChangeImageData() {
     if (ProjectCode != "new") {
-      const PORT = 5100;
       var file = document.getElementById('FileToGet').files[0];
       var fileReader = new FileReader();
       fileReader.readAsDataURL(file)
       fileReader.onload = () => {
           var arrayBuffer = fileReader.result;
   
-          var socket = io.connect(`http://${IP}:${PORT}`);
+          var socket = io.connect(`https://${IP}`);
   
           socket.on('Response', (data)=>{
             data.sessionishClientId = sessionStorage.getItem("sessionishClientId");

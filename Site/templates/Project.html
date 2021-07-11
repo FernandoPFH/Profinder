@@ -9,10 +9,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
     
+    
+    
+    
+    
 <link rel="stylesheet" href="{{url_for('static',filename='assets/bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/untitled.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/Contact-Form-Clean.css') }}">
     <script src="{{ url_for('static',filename='assets/js/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='assets/bootstrap/js/bootstrap.min.js') }}"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src="{{ url_for('static',filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/fonts/fontawesome5-overrides.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/untitled.css') }}"><script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
 <script> var ProjectCode = '{{ProjectCode}}';  </script>
 <script src="{{ url_for('static',filename='assets/js/TestIfLoged.js') }}"></script>
 <script src="{{ url_for('static',filename='assets/js/SearchBar.js') }}"></script>
@@ -21,10 +29,10 @@
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-xl fixed-top bg-dark navbar-custom">
-        <div class="container"><a class="navbar-brand" href="/">Profinder</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive"><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><button class="btn btn-primary CustomSideBarToggler" type="button" data-toggle="modal" data-target="#CustomSideBar"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand" href="/">Profinder</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <div class="searchbardiv"><input type="text" id="SearchBar" placeholder="Pesquisar Projeto Por Titulo"><img src="/static/assets/img/search_icon.png" style="height: 30px;width: 30px;" onclick="SearchForProjects ()"></div>
-                <ul class="nav navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="/signup/"><strong>Criar Conta</strong><br></a></li>
                     <li class="nav-item"><a class="nav-link" href="/login/"><strong>LOGAR</strong><br></a></li>
                 </ul>
@@ -32,7 +40,7 @@
         </div>
     </nav>
     <main class="d-xl-flex justify-content-xl-center masthead text-center text-white" style="height: 100%;">
-        <div class="d-flex justify-content-center" style="width: 100%;margin-top: -92px;height: 100%;">
+        <div class="d-flex justify-content-center OutLinerDiv">
             <div id="ProjectHoleDiv" class="masthead-content-special" style="position: relative;">
                 <div class="container" style="width: 100%;">
                     <h1 class="MyAccountHeader" style="margin-bottom: 32px;border-color: rgb(255,255,255);color: rgb(0,0,0);">Projeto</h1>
@@ -40,7 +48,7 @@
                         <div class="ProjectImageContainer">
                             <div class="d-xl-flex justify-content-xl-center ImageContainer"><img id="ItemPreview" class="ProfilePic" style="height: 199px;border-style: none;width: 199px;" src="/static/assets/img/Picture1-512.webp" alt="img"></div>
                         </div>
-                        <div class="d-flex flex-column justify-content-center" id="InfoContainer">
+                        <div class="d-flex flex-column justify-content-center InfoContainer" id="InfoContainer">
                             <div class="d-flex justify-content-end" id="EditButton"><button class="btn btn-primary" type="button" onclick="EditProject()">Editar</button></div>
                             <div class="d-flex justify-content-start align-items-start" id="TituloOfProject">
                                 <p class="d-xl-flex justify-content-xl-center" style="text-align: right;margin-bottom: 4px;color: rgb(0,0,0);width: 45px;">Titulo:</p><strong class="d-flex justify-content-center" id="Titulo"></strong>
@@ -49,7 +57,7 @@
                                 <p class="text-center" style="margin-bottom: 1px;color: rgb(0,0,0);width: 45px;margin-right: 3px;margin-top: -4px;">Areas:</p>
                             </div>
                             <div class="d-flex justify-content-start align-items-start Amostras" id="Membros">
-                                <p class="text-right d-xl-flex justify-content-xl-end" style="text-align: left;margin-bottom: 1px;margin-right: 1px;color: rgb(0,0,0);width: 71px;margin-top: -4px;">Membros:</p>
+                                <p class="text-right d-xl-flex justify-content-xl-end" style="text-align: left;margin-bottom: 1px;margin-right: 3px;color: rgb(0,0,0);width: 71px;margin-top: -4px;">Membros:</p>
                             </div>
                         </div>
                     </div>
@@ -64,6 +72,24 @@
         <div class="bg-circle-3 bg-circle"></div>
         <div class="bg-circle-4 bg-circle"></div>
     </main>
+    <div class="modal CustomSideBar" role="dialog" tabindex="-1" id="CustomSideBar">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Profinder Menu</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item"><a class="nav-link active" href="/" aria-current="page"><i class="fa fa-home" style="padding-right: 16px;"></i>Página Inicial</a></li>
+                        <li><a class="nav-link text-white" href="/projects/" aria-current="page"><i class="fas fa-clipboard-list" style="padding-right: 16px;"></i>Projetos</a></li>
+                        <li><a class="nav-link text-white" href="/#sobre" aria-current="page" onclick="$(&#39;#CustomSideBar&#39;).modal(&#39;hide&#39;)"><i class="fas fa-question-circle" style="padding-right: 16px;"></i>Sobre</a></li>
+                        <li><a class="nav-link text-white" href="/#contato" aria-current="page" onclick="$(&#39;#CustomSideBar&#39;).modal(&#39;hide&#39;)"><i class="fas fa-comments" style="padding-right: 16px;"></i>Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     
     
     

@@ -74,6 +74,16 @@ main.masthead .masthead-content {
 
 #InfoContainer {
   height: 100%;
+  /*width: 100%;*/
+  padding-top: 12px;
+  padding-left: 48px;
+  padding-right: 32px;
+  padding-bottom: 12px;
+}
+
+.InfoContainer {
+  height: 100%;
+  width: 100%;
   padding-top: 12px;
   padding-left: 48px;
   padding-right: 32px;
@@ -92,7 +102,7 @@ img.ProfilePic {
 div.overlay {
   position: absolute;
   opacity: 0;
-  background-color: #eee;
+  background-color: #ee0979d9;
   height: 100%;
   width: 100%;
   top: 0;
@@ -100,6 +110,7 @@ div.overlay {
 
 div.ImageContainer:hover div.overlay {
   opacity: 1;
+  cursor: pointer;
 }
 
 #SideBar {
@@ -367,16 +378,15 @@ p.ProjectItem-div {
 
 .masthead-content-special {
   background-color: #ffffff;
-  width: 40%;
-  height: Calc(100% + 112px);
+  width: 45%;
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 15px;
-  z-index: 1;
   overflow-y: auto;
+  display: none!important;
 }
 
-@media (max-width: 957px) {
+@media (max-width: 1346px) {
   .masthead-content-special {
     width: Calc(100% - 30px);
   }
@@ -430,6 +440,13 @@ p.ProjectItem-div {
   }
 }
 
+@media (max-width: 724px) {
+  .InfoContainer {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
 @media (max-width: 370px) {
   .MyAccountInput {
     flex-direction: column;
@@ -462,7 +479,7 @@ p.ProjectItem-div {
   }
 }
 
-@media (max-width: 902px) {
+@media (max-width: 870px) {
   #MyProjectData {
     flex-direction: column!important;
     justify-content: center!important;
@@ -535,6 +552,8 @@ p.ProjectItem-div {
 }
 
 #Titulo {
+  margin-left: 22px;
+  color: rgb(0,0,0);
 }
 
 #TituloOfProject {
@@ -578,5 +597,149 @@ p.ProjectItem-div {
   width: 180px;
   height: 180px;
   background: #ffffff;
+}
+
+@media (max-width: 1822px) and (min-width: 1347px) {
+  .masthead-content-special {
+    width: 60%;
+  }
+}
+
+.Papper {
+  cursor: pointer;
+  margin-bottom: 0px;
+  border: 1px solid rgb(0,0,0);
+  border-bottom: none;
+  border-top-left-radius: 19px;
+  border-top-right-radius: 19px;
+  color: white;
+  height: 26px;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+.SearchItem:hover {
+  cursor: pointer;
+}
+
+#DeleteButton {
+  background-color: red!important;
+}
+
+#DeleteButton:hover {
+  background-color: rgb(133,0,0)!important;
+}
+
+#DeleteButton.disabled:hover {
+  background-color: red!important;
+}
+
+.ProjectButton {
+  height: 28px;
+}
+
+@keyframes CustomSideBarInAnimation {
+  from {
+    left: -400px;
+  }
+  to {
+    left: 0px;
+  }
+}
+
+.CustomSideBar.show {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  animation-name: CustomSideBarInAnimation;
+  animation-duration: 0.1s;
+}
+
+.CustomSideBar .modal-dialog {
+  margin: 0px;
+  height: inherit;
+  margin-right: 80%;
+}
+
+.CustomSideBar .modal-dialog .modal-content {
+  background-color: rgb(33, 37, 41);
+  height: inherit;
+  border: 0px;
+  border-radius: 0px;
+  color: white;
+}
+
+.CustomSideBarToggler {
+  position: relative;
+  left: -20px;
+  border-color: hsla(0,0%,100%,.1);
+  background-color: transparent;
+}
+
+.CustomSideBarToggler:hover {
+  background-color: transparent;
+}
+
+.modal-header .close {
+  color: white;
+}
+
+.modal-header {
+  align-items: center;
+}
+
+@media (max-width: 1200px) {
+  .CustomSideBarToggler {
+    visibility: hidden;
+  }
+}
+
+@media (min-width: 1200px) {
+  .HiddenNavItens {
+    display: none;
+  }
+}
+
+a.p-5:hover {
+  text-decoration: none;
+}
+
+a.p-5 {
+  color: black;
+  margin-bottom: -102px;
+}
+
+.map-container {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.map-container iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.form-text.is-valid {
+  display: none;
+}
+
+#ContactUsForm {
+  margin-right: 5%;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  #ContactUsForm {
+    margin-right: auto;
+    margin-bottom: 30px;
+  }
 }
 

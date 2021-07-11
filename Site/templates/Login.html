@@ -9,10 +9,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
     
+    
+    
+    
+    
 <link rel="stylesheet" href="{{url_for('static',filename='assets/bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/untitled.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/Contact-Form-Clean.css') }}">
     <script src="{{ url_for('static',filename='assets/js/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='assets/bootstrap/js/bootstrap.min.js') }}"></script><script src="{{ url_for('static',filename='assets/js/Login.js') }}"></script>
+    <script src="{{ url_for('static',filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/fonts/fontawesome5-overrides.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/untitled.css') }}"><script src="{{ url_for('static',filename='assets/js/Login.js') }}"></script>
 </head>
 
 <body>
@@ -24,7 +32,8 @@
             <div class="container LoginInputContainer" style="/*width: 460px;*/">
                 <h1 style="margin-bottom: 0px;">Login</h1>
                 <p style="text-align: left;margin-bottom: 4px;">Email</p><input type="email" id="Email" class="LoginInput">
-                <p style="text-align: left;margin-bottom: 4px;">Senha</p><input type="password" id="Password" class="LoginInput"><button class="btn btn-primary" type="button" style="margin-top: 10px;background-color: rgb(52,58,64);" onclick="TryLogin()">Login</button>
+                <p style="text-align: left;margin-bottom: 4px;">Senha</p><input type="password" id="Password" class="LoginInput">
+                <p style="margin-top: 10px;">Ainda não tem uma conta?&nbsp;<a href="/signup/" style="color: blue;">Criar Conta</a></p><button class="btn btn-primary" type="button" style="/*margin-top: 10px;*/background-color: rgb(52,58,64);" onclick="TryLogin()">Login</button>
             </div>
         </div>
         <div class="bg-circle-1 bg-circle"></div>
@@ -32,6 +41,7 @@
         <div class="bg-circle-3 bg-circle"></div>
         <div class="bg-circle-4 bg-circle"></div>
     </main>
+    
     
     
     

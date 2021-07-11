@@ -9,10 +9,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
     
+    
+    
+    
+    
 <link rel="stylesheet" href="{{url_for('static',filename='assets/bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/untitled.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/Contact-Form-Clean.css') }}">
     <script src="{{ url_for('static',filename='assets/js/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='assets/bootstrap/js/bootstrap.min.js') }}"></script><script src="{{ url_for('static',filename='assets/js/Signup.js') }}"></script>
+    <script src="{{ url_for('static',filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/fonts/fontawesome5-overrides.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/untitled.css') }}"><script src="{{ url_for('static',filename='assets/js/Signup.js') }}"></script>
 </head>
 
 <body>
@@ -20,10 +28,10 @@
         <div class="masthead-content">
             <div class="container LoginInputContainer">
                 <h1 style="margin-bottom: 0px;">Criar Conta</h1>
-                <p style="text-align: left;margin-bottom: 4px;">Email</p><input type="email" id="email" class="LoginInput">
+                <p style="text-align: left;margin-bottom: 4px;">Email</p><input type="email" id="Email" class="LoginInput">
                 <p style="text-align: left;margin-bottom: 4px;">Senha</p><input type="password" id="Password" class="LoginInput">
                 <p style="text-align: left;margin-bottom: 4px;">Nome</p><input type="text" id="Name" class="LoginInput">
-                <p style="text-align: left;margin-bottom: 4px;">Tipo</p><select class="LoginInput">
+                <p style="text-align: left;margin-bottom: 4px;">Tipo</p><select id="Type" class="LoginInput">
                     <option value="aluno" selected="">Aluno</option>
                     <option value="prof">Professor</option>
                 </select><button class="btn btn-primary" type="button" style="background-color: rgb(52,58,64);margin-top: 10px;" onclick="TrySignup()">Criar Conta</button>
@@ -37,6 +45,7 @@
     <nav class="navbar navbar-dark navbar-expand fixed-top bg-dark navbar-custom">
         <div class="container"><a class="navbar-brand" href="/">Profinder</a><button class="navbar-toggler" data-toggle="collapse"><span class="navbar-toggler-icon"></span></button></div>
     </nav>
+    
     
     
     

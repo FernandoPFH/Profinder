@@ -5,6 +5,8 @@ services:
     build: ./
     environment:
       IP: localhost
+      EMAIL: pensecomigocanal@gmail.com
+      DEBUG: 'true'
       MONGODB_USERNAME: root
       MONGODB_PASSWORD: example
       MONGODB_HOSTNAME: mongodb
