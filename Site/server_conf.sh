@@ -1,3 +1,6 @@
+read -p "DNS: " DNS
+
+
 cd /home/azureuser
 
 mv /home/azureuser/Profinder/Site/Nginx/nginx.conf /home/azureuser/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com
@@ -13,7 +16,7 @@ sudo ln -s /home/azureuser/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.a
 
 sudo ln -s /home/azureuser/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com /etc/nginx/sites-enabled/
 
-sudo nano /etc/nginx/nginx.conf
+sed -i 's/# server_names_hash_bucket_size 64/server_names_hash_bucket_size 64/g' /etc/nginx/nginx.conf
 
 sudo nginx -t
 
@@ -48,12 +51,13 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 cd ./Profinder/Site
 
-sudo nano docker-compose.yml
+sed -i `s/localhost/$DNS/g` docker-compose.yml
+sed -i `s/true/false/g` docker-compose.yml
 
 sudo docker-compose up -d --build
 
 cd ../Servidor
 
-sudo nano docker-compose.yml
+sed -i `s/localhost/$DNS/g` docker-compose.yml
 
 sudo docker-compose up -d --build
