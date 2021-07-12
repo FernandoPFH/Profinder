@@ -1,20 +1,20 @@
 read -p "DNS: " DNS
+read -p "User: " USER
 
+cd `/home/$USER`
 
-cd /home/azureuser
+mv `/home/$USER/Profinder/Site/Nginx/nginx.conf` `/home/$USER/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com`
 
-mv /home/azureuser/Profinder/Site/Nginx/nginx.conf /home/azureuser/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com
-
-openssl dhparam -out /home/azureuser/Profinder/Site/Certificates/dhparam.pem 4096
+openssl dhparam -out `/home/$USER/Profinder/Site/Certificates/dhparam.pem` 4096
 
 sudo apt update
 printf "y" | sudo apt install nginx
 
 sudo ufw allow 'Nginx Full'
 
-sudo ln -s /home/azureuser/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com /etc/nginx/sites-available/
+sudo ln -s `/home/$USER/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com` /etc/nginx/sites-available/
 
-sudo ln -s /home/azureuser/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com /etc/nginx/sites-enabled/
+sudo ln -s `/home/$USER/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com` /etc/nginx/sites-enabled/
 
 sed -i 's/# server_names_hash_bucket_size 64/server_names_hash_bucket_size 64/g' /etc/nginx/nginx.conf
 
@@ -24,7 +24,7 @@ sudo systemctl restart nginx
 
 printf "y" | sudo apt install certbot python3-certbot-nginx 
 
-sudo certbot --nginx -d profinder.brazilsouth.cloudapp.azure.com -d profinder.brazilsouth.cloudapp.azure.com --non-interactive --agree-tos -m 19.00499-0@maua.br
+sudo certbot --nginx -d $DNS -d $DNS --non-interactive --agree-tos -m 19.00499-0@maua.br
 
 sudo apt-get update
 printf "y" | sudo apt-get install \
