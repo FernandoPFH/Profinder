@@ -1,20 +1,20 @@
 read -p "DNS: " DNS
 read -p "User: " USER
 
-cd `/home/$USER`
+cd "/home/$USER"
 
-sudo mv `/home/$USER/Profinder/Site/Nginx/nginx.conf` `/home/$USER/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com`
+sudo mv "/home/$USER/Profinder/Site/Nginx/nginx.conf" "/home/$USER/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com"
 
-sudo openssl dhparam -out `/home/$USER/Profinder/Site/Certificates/dhparam.pem` 4096
+sudo openssl dhparam -out "/home/$USER/Profinder/Site/Certificates/dhparam.pem" 4096
 
 sudo apt update
 printf "y" | sudo apt install nginx
 
 sudo ufw allow 'Nginx Full'
 
-sudo ln -s `/home/$USER/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com` /etc/nginx/sites-available/
+sudo ln -s "/home/$USER/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com" /etc/nginx/sites-available/
 
-sudo ln -s `/home/$USER/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com` /etc/nginx/sites-enabled/
+sudo ln -s "/home/$USER/Profinder/Site/Nginx/profinder.brazilsouth.cloudapp.azure.com" /etc/nginx/sites-enabled/
 
 sudo sed -i 's/# server_names_hash_bucket_size 64/server_names_hash_bucket_size 64/g' /etc/nginx/nginx.conf
 
@@ -51,13 +51,13 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 cd ./Profinder/Site
 
-sudo sed -i `s/localhost/$DNS/g` docker-compose.yml
-sudo sed -i `s/true/false/g` docker-compose.yml
+sudo sed -i "s/localhost/$DNS/g" docker-compose.yml
+sudo sed -i "s/true/false/g" docker-compose.yml
 
 sudo docker-compose up -d --build
 
 cd ../Servidor
 
-sudo sed -i `s/localhost/$DNS/g` docker-compose.yml
+sudo sed -i "s/localhost/$DNS/g" docker-compose.yml
 
 sudo docker-compose up -d --build
